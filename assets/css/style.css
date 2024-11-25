@@ -1104,3 +1104,16 @@ section {
     padding-right: 20px 15px;
   }
 }
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.skill-logo {
+  width: 40px; /* Adjust the size as needed */
+  height: 40px;
+  margin-right: 10px;
+}
+
