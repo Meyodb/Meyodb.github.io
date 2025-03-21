@@ -20,32 +20,32 @@
         .dark .shadow-lg {box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);}
         .hero-section {min-height: 100vh;display: flex;align-items: center;justify-content: center;}
         .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
 
-.modal.active {
-    display: flex;
-}
+        .modal.active {
+            display: flex;
+        }
 
-.modal-content {
-    position: relative;
-    max-height: 90vh;
-    max-width: 90vw;
-}
+        .modal-content {
+            position: relative;
+            max-height: 90vh;
+            max-width: 90vw;
+        }
 
-#modalImage {
-    max-height: 85vh;
-    object-fit: contain;
-}
+        #modalImage {
+            max-height: 85vh;
+            object-fit: contain;
+        }
         @keyframes modalFadeIn {
             from {opacity: 0;transform: translateY(-20px);}
             to {opacity: 1;transform: translateY(0);}
@@ -59,6 +59,69 @@
         .terminal {background-color: #1e1e1e;border-radius: 10px;padding: 20px;font-family: 'Fira Code', monospace;color: #d4d4d4;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);}
         .terminal pre {margin: 0;line-height: 1.5;}
         .dark .terminal {background-color: #2d2d2d;}
+        
+        /* Styles responsifs additionnels */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 6rem;
+                min-height: auto;
+                padding-bottom: 3rem;
+            }
+            
+            .terminal {
+                font-size: 0.8rem;
+                padding: 15px;
+            }
+            
+            .terminal pre {
+                white-space: pre-wrap;
+                overflow-x: auto;
+            }
+            
+            .timeline-container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            
+            .modal-content {
+                width: 95%;
+                max-width: 95%;
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2.25rem !important;
+            }
+            
+            h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .project-card img {
+                height: 12rem;
+            }
+        }
+        
+        /* Améliorations pour la timeline sur petit écran */
+        @media (max-width: 640px) {
+            .timeline-point {
+                left: 0;
+                transform: translateX(0);
+            }
+            
+            .timeline-content {
+                width: 100%;
+                margin-left: 2rem;
+            }
+            
+            .timeline-line {
+                left: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-main">
@@ -67,6 +130,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center justify-between w-full">
                     <span class="font-semibold text-gray-800 text-lg dark:text-white">Mehdi AMINE</span>
+                    <!-- Menu Desktop -->
                     <div class="hidden md:flex items-center space-x-4">
                         <a href="#accueil" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Accueil</a>
                         <a href="#about" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">À propos</a>
@@ -87,8 +151,40 @@
                             </svg>
                         </button>
                     </div>
+                    <!-- Bouton Menu Mobile -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobile-menu-button" class="outline-none mobile-menu-button">
+                            <svg class="w-6 h-6 text-gray-500 hover:text-blue-500 dark:text-white"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <button id="theme-toggle-mobile" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 ml-4">
+                            <svg id="theme-toggle-light-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+                            </svg>
+                            <svg id="theme-toggle-dark-mobile" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="hidden mobile-menu md:hidden bg-white dark:bg-gray-800 w-full py-2 shadow-lg">
+            <ul class="px-4 py-2 space-y-3">
+                <li><a href="#accueil" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">Accueil</a></li>
+                <li><a href="#about" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">À propos</a></li>
+                <li><a href="#bts" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">BTS SIO</a></li>
+                <li><a href="#parcours" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">Parcours</a></li>
+                <li><a href="#skills" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">Compétences</a></li>
+                <li><a href="#stages" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">Stages</a></li>
+                <li><a href="#projects" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">Projets</a></li>
+                <li><a href="#veille" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">Veille</a></li>
+                <li><a href="#e5" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">Épreuve E5</a></li>
+                <li><a href="#contact" class="block text-gray-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-500 transition-colors py-2">Contact</a></li>
+            </ul>
         </div>
     </nav>
     <section id="accueil" class="hero-section">
@@ -267,46 +363,77 @@
                 <!-- Parcours Scolaire -->
                 <div>
                     <h3 class="text-2xl font-bold mb-8 text-center dark:text-white">Diplômes et Formations</h3>
-                    <div class="relative">
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-blue-500 h-full"></div>
+                    <div class="relative timeline-container">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-blue-500 h-full timeline-line md:block hidden"></div>
+                        <div class="absolute left-0 w-0.5 bg-blue-500 h-full timeline-line block md:hidden"></div>
                         <div class="space-y-6 relative">
                             <div class="flex items-center w-full">
-                                <div class="w-1/2 pr-4 text-right">
+                                <div class="w-1/2 pr-4 text-right md:block hidden">
                                     <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
                                         <h4 class="text-base font-bold mb-2 text-blue-600">BTS SIO OPTION SLAM</h4>
                                         <p class="text-gray-600 dark:text-gray-300">Lycée Charles de Foucauld, Paris</p>
                                         <p class="text-sm text-gray-500">2023 - 2025</p>
                                     </div>
                                 </div>
-                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                <div class="absolute left-1/2 transform -translate-x-1/2 timeline-point md:block hidden">
                                     <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="absolute left-0 timeline-point block md:hidden">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="md:hidden w-full pl-8 timeline-content">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">BTS SIO OPTION SLAM</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Lycée Charles de Foucauld, Paris</p>
+                                        <p class="text-sm text-gray-500">2023 - 2025</p>
+                                    </div>
                                 </div>
                             </div>
                             
                             <div class="flex items-center w-full">
-                                <div class="w-1/2"></div>
-                                <div class="w-1/2 pl-4">
+                                <div class="w-1/2 md:block hidden"></div>
+                                <div class="w-1/2 pl-4 md:block hidden">
                                     <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
                                         <h4 class="text-base font-bold mb-2 text-blue-600">Licence en Mathématiques</h4>
                                         <p class="text-gray-600 dark:text-gray-300">Sorbonne Université, Villetaneuse</p>
                                         <p class="text-sm text-gray-500">2022 - 2023</p>
                                     </div>
                                 </div>
-                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                <div class="absolute left-1/2 transform -translate-x-1/2 timeline-point md:block hidden">
                                     <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="absolute left-0 timeline-point block md:hidden">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="md:hidden w-full pl-8 timeline-content">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Licence en Mathématiques</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Sorbonne Université, Villetaneuse</p>
+                                        <p class="text-sm text-gray-500">2022 - 2023</p>
+                                    </div>
                                 </div>
                             </div>
                             
                             <div class="flex items-center w-full">
-                                <div class="w-1/2 pr-4 text-right">
+                                <div class="w-1/2 pr-4 text-right md:block hidden">
                                     <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
                                         <h4 class="text-base font-bold mb-2 text-blue-600">Baccalauréat Général Spécialités Mathématiques, NSI</h4>
                                         <p class="text-gray-600 dark:text-gray-300">Lycée Jules Ferry, Paris</p>
                                         <p class="text-sm text-gray-500">2021 - 2022</p>
                                     </div>
                                 </div>
-                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                <div class="absolute left-1/2 transform -translate-x-1/2 timeline-point md:block hidden">
                                     <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="absolute left-0 timeline-point block md:hidden">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="md:hidden w-full pl-8 timeline-content">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Baccalauréat Général Spécialités Mathématiques, NSI</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Lycée Jules Ferry, Paris</p>
+                                        <p class="text-sm text-gray-500">2021 - 2022</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -316,65 +443,95 @@
                 <!-- Parcours Professionnel -->
                 <div>
                     <h3 class="text-2xl font-bold mb-8 text-center dark:text-white">Expériences Professionnelles</h3>
-                    <div class="relative">
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-blue-500 h-full"></div>
+                    <div class="relative timeline-container">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-blue-500 h-full timeline-line md:block hidden"></div>
+                        <div class="absolute left-0 w-0.5 bg-blue-500 h-full timeline-line block md:hidden"></div>
                         <div class="space-y-6 relative">
                             <div class="flex items-center w-full">
-                                <div class="w-1/2"></div>
-                                <div class="w-1/2 pl-4">
+                                <div class="w-1/2 md:block hidden"></div>
+                                <div class="w-1/2 pl-4 md:block hidden">
                                     <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
                                         <h4 class="text-base font-bold mb-2 text-blue-600">Freelance</h4>
                                         <p class="text-gray-600 dark:text-gray-300">Développement d'une application web de gestion de contrat</p>
                                         <p class="text-sm text-gray-500">2025 | Soup & Juice</p>
                                     </div>
                                 </div>
-                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                <div class="absolute left-1/2 transform -translate-x-1/2 timeline-point md:block hidden">
                                     <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
                                 </div>
-                            </div>
+                                <div class="absolute left-0 timeline-point block md:hidden">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="md:hidden w-full pl-8 timeline-content">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Freelance</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Développement d'une application web de gestion de contrat</p>
+                                        <p class="text-sm text-gray-500">2025 | Soup & Juice</p>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div class="flex items-center w-full">
-                                <div class="w-1/2 pr-4 text-right">
+                                <div class="w-1/2 pr-4 text-right md:block hidden">
                                     <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
                                         <h4 class="text-base font-bold mb-2 text-blue-600">Stage de 2ème année</h4>
                                         <p class="text-gray-600 dark:text-gray-300">Création d'un espace de formation sur le web</p>
                                         <p class="text-sm text-gray-500">2025 | Soup & Juice</p>
                                     </div>
                                 </div>
-                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                <div class="absolute left-1/2 transform -translate-x-1/2 timeline-point md:block hidden">
                                     <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="absolute left-0 timeline-point block md:hidden">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="md:hidden w-full pl-8 timeline-content">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Stage de 2ème année</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Création d'un espace de formation sur le web</p>
+                                        <p class="text-sm text-gray-500">2025 | Soup & Juice</p>
+                                    </div>
                                 </div>
                             </div>
                             
                             <div class="flex items-center w-full">
-                                <div class="w-1/2"></div>
-                                <div class="w-1/2 pl-4">
+                                <div class="w-1/2 md:block hidden"></div>
+                                <div class="w-1/2 pl-4 md:block hidden">
                                     <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
                                         <h4 class="text-base font-bold mb-2 text-blue-600">Stage de 1er année</h4>
                                         <p class="text-gray-600 dark:text-gray-300">Développement d'un site web de vente</p>
                                         <p class="text-sm text-gray-500">2024 | Nasr Beauty</p>
                                     </div>
                                 </div>
-                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                <div class="absolute left-1/2 transform -translate-x-1/2 timeline-point md:block hidden">
                                     <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
                                 </div>
-                            </div>
+                                <div class="absolute left-0 timeline-point block md:hidden">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                                <div class="md:hidden w-full pl-8 timeline-content">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Stage de 1er année</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Développement d'un site web de vente</p>
+                                        <p class="text-sm text-gray-500">2024 | Nasr Beauty</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-center">
-                    <div class="flex gap-4 mt-6">
-                        <a href="projets/CV.pdf" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
-                            Voir le CV
-                        </a>
-                    </div>
                 </div>
+            </div>
+            
+            <div class="flex justify-center">
+                <div class="flex gap-4 mt-8">
+                    <a href="projets/CV.pdf" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                        Voir le CV
+                    </a>
                 </div>
             </div>
         </div>
-
-        <!-- Compétences -->
+    </section>
+    <!-- Compétences -->
 <section id="skills" class="py-24 bg-white dark:bg-gray-800">
             <div class="max-w-7xl mx-auto px-4">
                 <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Compétences</h2>
@@ -1585,87 +1742,126 @@ onclick="openModal('project8')">
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleLight = document.getElementById('theme-toggle-light');
         const themeToggleDark = document.getElementById('theme-toggle-dark');
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+        const themeToggleLightMobile = document.getElementById('theme-toggle-light-mobile');
+        const themeToggleDarkMobile = document.getElementById('theme-toggle-dark-mobile');
+
+        // Initialisation du thème
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             themeToggleLight.classList.remove('hidden');
             themeToggleDark.classList.add('hidden');
+            themeToggleLightMobile.classList.remove('hidden');
+            themeToggleDarkMobile.classList.add('hidden');
         } else {
             document.documentElement.classList.remove('dark');
             themeToggleLight.classList.add('hidden');
             themeToggleDark.classList.remove('hidden');
+            themeToggleLightMobile.classList.add('hidden');
+            themeToggleDarkMobile.classList.remove('hidden');
         }
 
-        themeToggleBtn.addEventListener('click', function() {
+        // Fonction pour changer le thème
+        function toggleTheme() {
             document.documentElement.classList.toggle('dark');
             themeToggleLight.classList.toggle('hidden');
             themeToggleDark.classList.toggle('hidden');
+            themeToggleLightMobile.classList.toggle('hidden');
+            themeToggleDarkMobile.classList.toggle('hidden');
+            
             if (document.documentElement.classList.contains('dark')) {
                 localStorage.theme = 'dark';
             } else {
                 localStorage.theme = 'light';
             }
-        });
+        }
+
+        // Écouteurs d'événements pour les boutons de thème
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleBtnMobile.addEventListener('click', toggleTheme);
+
+        // Navigation fluide
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                
+                // Fermer le menu mobile après clic sur un lien
+                const mobileMenu = document.querySelector('.mobile-menu');
+                if (mobileMenu.classList.contains('block')) {
+                    mobileMenu.classList.remove('block');
+                    mobileMenu.classList.add('hidden');
+                }
             });
         });
+
+        // Menu mobile toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('block');
+        });
+
+        // Fonctions modales
         function openModal(projectId) {
-        document.getElementById(`modal-${projectId}`).classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+            document.getElementById(`modal-${projectId}`).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-    function closeModal(projectId) {
-        document.getElementById(`modal-${projectId}`).classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.classList.remove('active');
+        function closeModal(projectId) {
+            document.getElementById(`modal-${projectId}`).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-    }
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            const modals = document.getElementsByClassName('modal');
-            for (let modal of modals) {
-                modal.classList.remove('active');
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.getElementsByClassName('modal');
+                for (let modal of modals) {
+                    modal.classList.remove('active');
+                }
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        function openImageViewer(imageSrc) {
+            const modal = document.getElementById('imageViewerModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageViewer() {
+            const modal = document.getElementById('imageViewerModal');
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-    });
-    function openImageViewer(imageSrc) {
-    const modal = document.getElementById('imageViewerModal');
-    const modalImage = document.getElementById('modalImage');
-    modalImage.src = imageSrc;
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
 
-function closeImageViewer() {
-    const modal = document.getElementById('imageViewerModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
+        // Fermer avec Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageViewer();
+            }
+        });
 
-// Fermer avec Escape
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeImageViewer();
-    }
-});
-
-// Fermer en cliquant en dehors de l'image
-document.getElementById('imageViewerModal').addEventListener('click', function(event) {
-    if (event.target === this) {
-        closeImageViewer();
-    }
-});
-    
-</script>
+        // Fermer en cliquant en dehors de l'image
+        document.getElementById('imageViewerModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeImageViewer();
+            }
+        });
+    </script>
 <!--agrandissement des images -->
 <div id="imageViewerModal" class="modal" style="display: none;">
     <div class="modal-content bg-transparent p-4">
@@ -1678,6 +1874,4 @@ document.getElementById('imageViewerModal').addEventListener('click', function(e
     </div>
 </div>
 </body>
-</html>
-</html>
 </html>
