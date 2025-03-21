@@ -1,398 +1,1683 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMINE MEHDI - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .font-code {font-family: 'Fira Code', monospace;}
+        .font-main {font-family: 'Poppins', sans-serif;}
+        .terminal {background-color: #1a1a1a;border-radius: 10px;padding: 20px;font-family: 'Fira Code', monospace;color: #00ff00;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);}
+        .terminal-line {margin: 8px 0;}
+        .terminal-prompt::before {content: "$ ";color: #00ff00;}
+        .dark {background-color: #1a1a1a;color: #ffffff;}
+        .dark .bg-white {background-color: #2d2d2d;color: #ffffff;}
+        .dark .text-gray-600 {color: #d1d1d1;}
+        .dark .text-gray-700 {color: #ffffff;}
+        .dark .text-gray-800 {color: #ffffff;}
+        .dark .bg-gray-50 {background-color: #1f1f1f;}
+        .dark .shadow-lg {box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);}
+        .hero-section {min-height: 100vh;display: flex;align-items: center;justify-content: center;}
+        .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
 
-  <title>PortFolio Mehdi Amine</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+.modal.active {
+    display: flex;
+}
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+.modal-content {
+    position: relative;
+    max-height: 90vh;
+    max-width: 90vw;
+}
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <iconify-icon icon="eos-icons:virtual-reality"></iconify-icon>
-  <!-- Template Main CSS File -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <base href="https://meyodb.github.io/Mehdi.github.io/">
-
+#modalImage {
+    max-height: 85vh;
+    object-fit: contain;
+}
+        @keyframes modalFadeIn {
+            from {opacity: 0;transform: translateY(-20px);}
+            to {opacity: 1;transform: translateY(0);}
+        }
+        .project-card {cursor: pointer;}
+        .dark .bg-white {background-color: #2d2d2d;}
+        .dark input, .dark textarea {background-color: #1a1a1a;border-color: #4a4a4a;color: #ffffff;}
+        .dark input::placeholder, .dark textarea::placeholder {color: #6b7280;}
+        .dark input:focus, .dark textarea:focus {border-color: #3b82f6;box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);}
+        .dark label {color: #e5e7eb;}
+        .terminal {background-color: #1e1e1e;border-radius: 10px;padding: 20px;font-family: 'Fira Code', monospace;color: #d4d4d4;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);}
+        .terminal pre {margin: 0;line-height: 1.5;}
+        .dark .terminal {background-color: #2d2d2d;}
+    </style>
 </head>
-
-<body>
-
-  <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="profile">
-      <h1><a href="index.html">Mehdi Amine</a></h1>
-      
-      <nav id="navbar" class="nav-menu">
-        <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>À propos de moi</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>CV</span></a></li>
-          <li><a href="#projets" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Projets</span></a></li>
-          <li><a href="#Veille" class="nav-link scrollto"><i class="bx bx-search"></i> <span>Veille Technologique</span></a></li>
-          <li><a href="#E4" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Epreuve E4</span></a></li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Me contacter</span></a></li>
-        </ul>
-      </nav>
-      
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/mehdi-amine-107b00176/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://github.com/Meyodb" class="github"><i class="bx bxl-github"></i></a>
-      </div>
-    </div>
-  </header>
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center"> 
-    <div class="hero-container" data-aos="fade-in">
-      <h1>Mehdi Amine</h1>
-      <p><span class="typed" data-typed-items="Étudiant en informatique, BTS SIO SLAM"></span></p>
-    </div>
-  </section>
-  <!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="section-title">
-          <h2>À propos de moi</h2>
+<body class="bg-gray-50 font-main">
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center justify-between w-full">
+                    <span class="font-semibold text-gray-800 text-lg dark:text-white">Mehdi AMINE</span>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="#accueil" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Accueil</a>
+                        <a href="#about" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">À propos</a>
+                        <a href="#bts" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">BTS SIO</a>
+                        <a href="#parcours" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Parcours</a>
+                        <a href="#skills" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Compétences</a>
+                        <a href="#stages" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Stages</a>
+                        <a href="#projects" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Projets</a>
+                        <a href="#veille" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Veille</a>
+                        <a href="#e5" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Épreuve E5</a>
+                        <a href="#contact" class="text-gray-700 hover:text-blue-500 transition duration-300 dark:text-gray-300 px-3">Contact</a>
+                        <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 ml-4">
+                            <svg id="theme-toggle-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+                            </svg>
+                            <svg id="theme-toggle-dark" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="content" data-aos="fade-left">
-          <h3>Étudiant en BTS SIO</h3>
-          
-          <div class="info-item">
-            <strong>Âge:</strong>
-            <span>20</span>
-          </div>
-          
-          <div class="info-item">
-            <strong>Ville:</strong>
-            <span>Paris, France</span>
-          </div>
-          
-          <div class="info-item">
-            <strong>E-mail:</strong>
-            <span>mehdisse20@gmail.com</span>
-          </div>
-          
-          <div class="info-item">
-            <strong>Langues:</strong>
-            <span>Anglais B2, Espagnol B1, Arabe A2</span>
-          </div>
-          
-          <div class="info-item">
-            <strong>Numéro de téléphone:</strong>
-            <span>07 67 70 31 65</span>
-          </div>
-          
-          <div class="info-item">
-            <strong>Diplôme:</strong>
-            <span>Bac Général</span>
-          </div>
+    </nav>
+    <section id="accueil" class="hero-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
+                        Mehdi AMINE
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Etudiant en BTS SIO option SLAM
+                    </p>
+                    <a href="#contact" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition duration-300">
+                        Me contacter
+                    </a>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="terminal">
+                        <div class="flex items-center justify-between mb-2 text-gray-400">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="text-sm">Portfolio.java</span>
+                        </div>
+                        <div class="text-sm">
+                            <pre class="text-blue-400"><span class="text-purple-400">public class</span> Portfolio {</pre>
+                            <pre class="text-blue-400"><span class="text-purple-400">private final</span> String name = <span class="text-green-400">"Mehdi AMINE"</span>;</pre>
+                            <pre class="text-blue-400"><span class="text-purple-400">private final</span> String formation = <span class="text-green-400">"BTS SIO SLAM"</span>;</pre>
+                            <pre class="text-blue-400"><span class="text-purple-400">private final</span> String[] skills = {</pre>
+                            <pre class="text-blue-400"><span class="text-green-400">"Java"</span>, <span class="text-green-400">"PHP"</span>, <span class="text-green-400">"Laravel"</span>,</pre>
+                            <pre class="text-blue-400"><span class="text-green-400">"HTML/CSS"</span>, <span class="text-green-400">"MySQL"</span></pre>
+                            <pre class="text-blue-400">    };</pre>
+                            <pre class="text-blue-400">}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
-      <div class="container">
-        <div class="section-title">
-          <h2>Compétences</h2>
+    </section>
+    <section id="about" class="py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">À propos</h2>
+            <div class="max-w-3xl mx-auto text-center">
+                <h3 class="text-2xl font-bold mb-6 dark:text-white">Etudiant en BTS SIO option SLAM</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    Je suis actuellement en BTS SIO option SLAM, une formation qui me permet de développer mes compétences en programmation et en gestion de projets.
+                    J'ai déjà eu l'occasion de réaliser des projets personnels et scolaires, qui m'ont permis d'acquérir des compétences dans différents langages de programmation ainsi que dans l'utilisation d'outils comme Git pour la gestion de versions.
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                    
+                </p>
+                <div class="grid grid-cols-2 gap-6 max-w-xl mx-auto">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2 dark:text-white">Education</h4>
+                        <p class="text-gray-600 dark:text-gray-300">BTS SIO SLAM</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2 dark:text-white">Localisation</h4>
+                        <p class="text-gray-600 dark:text-gray-300">Paris, France</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+    <section id="bts" class="py-24 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">BTS SIO</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Option SISR -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg">
+                    <div class="flex flex-col items-center mb-6">
+                        <h3 class="text-2xl font-bold dark:text-white">Option SISR</h3>
+                        <p class="text-gray-500 dark:text-gray-300">Solutions d'Infrastructure, Systèmes et Réseaux</p>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            L'option SISR forme des spécialistes des réseaux et équipements informatiques :
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                            <li>Administration des systèmes</li>
+                            <li>Maintenance des réseaux</li>
+                            <li>Sécurité informatique</li>
+                            <li>Configuration des serveurs</li>
+                            <li>Support technique aux utilisateurs</li>
+                        </ul>
+                    </div>
+                </div>
     
-        <div class="skills-content">
-          <div class="skill-item">
-            <img src="assets/img/python-logo.png" alt="Python Logo" class="skill-logo">
-            <span class="skill">Python</span>
-            <span class="skill-level">Confirmé</span>
-          </div>
-
-          <div class="skill-item">
-            <img src="assets/img/HTML-logo.png" alt="HTML Logo" class="skill-logo">
-            <span class="skill">HTML</span>
-            <span class="skill-level">Intermédiaire</span>
-          </div>
-          
-          <div class="skill-item">
-            <img src="assets/img/java-logo.png" alt="Java Logo" class="skill-logo">
-            <span class="skill">Java</span>
-            <span class="skill-level">Intermédiaire</span>
-          </div>
-          
-          <div class="skill-item">
-            <img src="assets/img/PHP-logo.png" alt="PHP Logo" class="skill-logo">
-            <span class="skill">PHP</span>
-            <span class="skill-level">Débutant</span>
-          </div>
+                <!-- Option SLAM -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg">
+                    <div class="flex flex-col items-center mb-6">
+                        <h3 class="text-2xl font-bold dark:text-white">Option SLAM</h3>
+                        <p class="text-gray-500 dark:text-gray-300">Solutions Logicielles et Applications Métiers</p>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            L'option SLAM forme des développeurs d'applications :
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                            <li>Développement d'applications</li>
+                            <li>Programmation orientée objet</li>
+                            <li>Développement web</li>
+                            <li>Bases de données</li>
+                            <li>Cybersécurité des applications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-    <!-- End Skills Section -->
-
-
-    <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Parcours</h2>
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto mt-16 px-4">
+            <div class="max-w-4xl mx-auto mt-16 px-4">
+                <!-- Débouchés professionnels -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl p-8 shadow-lg mb-8">
+                    <h3 class="text-2xl font-bold text-center mb-6 dark:text-white">Métiers après le BTS</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <h4 class="font-semibold text-center dark:text-white">Option SLAM</h4>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                                <li>Développeur d'applications</li>
+                                <li>Développeur web</li>
+                                <li>Analyste programmeur</li>
+                                <li>Développeur full-stack</li>
+                                <li>Intégrateur web</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-4">
+                            <h4 class="font-semibold text-center dark:text-white">Option SISR</h4>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                                <li>Administrateur systèmes et réseaux</li>
+                                <li>Technicien support informatique</li>
+                                <li>Administrateur de bases de données</li>
+                                <li>Technicien sécurité</li>
+                                <li>Responsable parc informatique</li>
+                            </ul>
+                    </div>
+                    </div>
+                </div>
             
-            <h3 class="resume-title">Diplômes et Formations</h3>
-            <div class="resume-item">
-              <h4>BTS Services informatiques aux organisations</h4>
-              <h4>Option SLAM</h4>
-              <h5>2023 - 2025</h5>
-              <p><em>Lycée Charles de Foucauld, Paris</em></p>
+                <!-- Poursuite d'études -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl p-8 shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-6 dark:text-white">Poursuite d'études</h3>
+                    <div class="space-y-4">
+                        <p class="text-gray-600 dark:text-gray-300 text-center">
+                            Après le BTS SIO, plusieurs possibilités s'offrent aux étudiants :
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <h4 class="font-semibold dark:text-white">Licence Professionnelle</h4>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                                    <li>Développement Web</li>
+                                    <li>Cybersécurité</li>
+                                    <li>Administration Systèmes et Réseaux</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-2">
+                                <h4 class="font-semibold dark:text-white">Bachelor / École d'ingénieur</h4>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                                    <li>Bachelor en Informatique</li>
+                                    <li>École d'ingénieur</li>
+                                    <li>Master en Informatique</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="resume-item">
-              <h4>Première année de Licence en Mathématiques</h4>
-              <h5>2022 - 2023</h5>
-              <p><em>Sorbonne Université, Villetaneuse</em></p>
-            </div>
-            <div class="resume-item">
-              <h4>Baccalauréat Général spécialités Mathématiques, Numérique Sciences et Informatiques</h4>
-              <h5>2021 - 2022</h5>
-              <p><em>Lycée Jules Ferry, Paris</em></p>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Expériences professionnelles</h3>
-            <div class="resume-item">
-              <h4>Hote d'Accueil</h4>
-              <h5>2022 - 2023</h5>
-              <p><em>RATP</em></p>
-              <ul>
-                <li>Chargé d'accueillir, de renseigner, d'orienter les passagers</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Stagiaire Community Manager</h4>
-              <h5>2017 - 2018</h5>
-              <p><em>Tonsser</em></p>
-              <ul>
-                <li>Réseau social sportif </li>
-                <li>Aide à la gestion marketing et au service informatique</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-        <a href="CV_Mehdi_Amine.pdf" target="_blank" style="text-decoration: none;">
-          <button style="background-color: rgb(62, 11, 244); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-              Voir le CV 
-          </button>
-      </a>
-    </div>
-    </div>
     </section>
-<!-- End Resume Section -->
+    <!-- Parcours -->
+    <section id="parcours" class="py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Mon Parcours</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Parcours Scolaire -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-8 text-center dark:text-white">Diplômes et Formations</h3>
+                    <div class="relative">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-blue-500 h-full"></div>
+                        <div class="space-y-6 relative">
+                            <div class="flex items-center w-full">
+                                <div class="w-1/2 pr-4 text-right">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">BTS SIO OPTION SLAM</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Lycée Charles de Foucauld, Paris</p>
+                                        <p class="text-sm text-gray-500">2023 - 2025</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center w-full">
+                                <div class="w-1/2"></div>
+                                <div class="w-1/2 pl-4">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Licence en Mathématiques</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Sorbonne Université, Villetaneuse</p>
+                                        <p class="text-sm text-gray-500">2022 - 2023</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center w-full">
+                                <div class="w-1/2 pr-4 text-right">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Baccalauréat Général Spécialités Mathématiques, NSI</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Lycée Jules Ferry, Paris</p>
+                                        <p class="text-sm text-gray-500">2021 - 2022</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Parcours Professionnel -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-8 text-center dark:text-white">Expériences Professionnelles</h3>
+                    <div class="relative">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-blue-500 h-full"></div>
+                        <div class="space-y-6 relative">
+                            <div class="flex items-center w-full">
+                                <div class="w-1/2"></div>
+                                <div class="w-1/2 pl-4">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Freelance</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Développement d'une application web de gestion de contrat</p>
+                                        <p class="text-sm text-gray-500">2025 | Soup & Juice</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <div class="flex items-center w-full">
+                                <div class="w-1/2 pr-4 text-right">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Stage de 2ème année</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Création d'un espace de formation sur le web</p>
+                                        <p class="text-sm text-gray-500">2025 | Soup & Juice</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center w-full">
+                                <div class="w-1/2"></div>
+                                <div class="w-1/2 pl-4">
+                                    <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                                        <h4 class="text-base font-bold mb-2 text-blue-600">Stage de 1er année</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Développement d'un site web de vente</p>
+                                        <p class="text-sm text-gray-500">2024 | Nasr Beauty</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 transform -translate-x-1/2">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                    <div class="flex gap-4 mt-6">
+                        <a href="projets/CV.pdf" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le CV
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
 
-<!-- ======= Projets Section ======= -->
-<section id="projets" class="projets">
-  <div class="container">
-    <div class="section-title">
-      <h2>Projets</h2>
+        <!-- Compétences -->
+<section id="skills" class="py-24 bg-white dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Compétences</h2>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-xl shadow-lg w-full md:w-auto">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg">
+                                <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold ml-4 dark:text-white">Frontend</h3>
+                        </div>
+                  <div class="space-y-4">
+                      <div>
+                          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                              <div class="flex items-center">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-6 h-6 mr-2" alt="HTML5" />
+                                <span class="text-gray-600 dark:text-gray-300">HTML/CSS</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                              <div class="flex items-center">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-6 h-6 mr-2" alt="JavaScript" />
+                                <span class="text-gray-600 dark:text-gray-300">JavaScript</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div>
+                        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div class="flex items-center">
+                              <svg class="w-6 h-6 mr-2 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/>
+                              </svg>
+                              <span class="text-gray-600 dark:text-gray-300">Tailwind CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-xl shadow-lg w-full md:w-auto">
+                  <div class="flex items-center mb-6">
+                      <div class="bg-green-100 dark:bg-green-900 p-3 rounded-lg">
+                          <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                          </svg>
+                      </div>
+                      <h3 class="text-xl font-bold ml-4 dark:text-white">Backend</h3>
+                  </div>
+                  <div class="space-y-4">
+                      <div>
+                          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                              <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                                  <path d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934a.378.378 0 01-.188.326L9.93 23.949a.316.316 0 01-.066.027c-.008.002-.016.008-.024.01a.348.348 0 01-.192 0c-.011-.002-.02-.008-.03-.012-.02-.008-.042-.014-.062-.025L.533 18.755a.376.376 0 01-.189-.326V2.974c0-.033.005-.066.014-.098.003-.012.01-.02.014-.032a.369.369 0 01.023-.058c.004-.013.015-.022.023-.033l.033-.045c.012-.01.025-.018.037-.027.014-.012.027-.024.041-.034H.53L5.043.05a.375.375 0 01.375 0L9.93 2.647h.002c.015.01.027.021.04.033l.038.027c.013.014.02.03.033.045.008.011.02.021.025.033.01.02.017.038.024.058.003.011.01.021.013.032.01.031.014.064.014.098v9.652l3.76-2.164V5.527c0-.033.004-.066.013-.098.003-.01.01-.02.013-.032a.487.487 0 01.024-.059c.007-.012.018-.02.025-.033.012-.015.021-.03.033-.043.012-.012.025-.02.037-.028.014-.01.026-.023.041-.032h.001l4.513-2.598a.375.375 0 01.375 0l4.513 2.598c.016.01.027.021.042.031.012.01.025.018.036.028.013.014.022.03.034.044.008.012.019.021.024.033.011.02.018.04.024.06.006.01.012.021.015.032.01.031.014.064.014.098z"/>
+                                </svg>
+                                <span class="text-gray-600 dark:text-gray-300">Laravel</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                              <div class="flex items-center">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" class="w-6 h-6 mr-2" alt="PHP" />
+                                <span class="text-gray-600 dark:text-gray-300">PHP</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                              <div class="flex items-center">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="w-6 h-6 mr-2" alt="SQL" />
+                                <span class="text-gray-600 dark:text-gray-300">SQL</span>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <div class="flex items-center">
+                          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-6 h-6 mr-2" alt="Java" />
+                          <span class="text-gray-600 dark:text-gray-300">Java</span>
+                        </div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                          <div class="flex items-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-6 h-6 mr-2" alt="Python" />
+                            <span class="text-gray-600 dark:text-gray-300">Python</span>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+                  
+              <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-xl shadow-lg w-full md:w-auto">
+                  <div class="flex items-center mb-6">
+                      <div class="bg-purple-100 dark:bg-purple-900 p-3 rounded-lg">
+                          <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                          </svg>
+                      </div>
+                      <h3 class="text-xl font-bold ml-4 dark:text-white">Autres</h3>
+                  </div>
+                  <div class="space-y-4">
+                      <div>
+                          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                              <div class="flex items-center">
+                                <img src="img/vscode.png" class="w-6 h-6 mr-2" alt="Git" />
+
+                                <span class="text-gray-600 dark:text-gray-300">VS Code</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                              <div class="flex items-center">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-6 h-6 mr-2" alt="Git" />
+                                <span class="text-gray-600 dark:text-gray-300">Git</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                          <div class="flex items-center">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="w-6 h-6 mr-2" alt="Linux" />
+                            <span class="text-gray-600 dark:text-gray-300">Linux</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+    <!-- Stages -->
+    <section id="stages" class="py-24 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Stages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Description du stage -->
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4 dark:text-white">Stage chez Nasr Beauty</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Durant mon stage de première année, j'avais pour objectif de créer une page produit exemple et de tester l'ajout de produit à la base de données.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">HTML</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">CSS</span>
+                            <span class="px-3 py-1 bg-orange-100 text-blue-600 dark:bg-orange-900 dark:text-orange-300 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">PHP</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 rounded-full text-sm">MySQL</span>
+                        </div>
+                        
+                        <!-- Compétences E5 -->
+                        <div class="mb-6">
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Compétences E5 :</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Gérer le patrimoine informatique</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Répondre aux incidents et aux demandes d'assistance</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Développer la présence en ligne</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Travailler en mode projet</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Mettre à disposition des utilisateurs un service informatique</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <a href="projets/Doc_Stage_1.pdf" target="_blank" 
+                               class="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Images du stage -->
+                <div class="grid grid-cols-1 gap-12">
+                    <img src="img/nasr_beauty_page_image.png" alt="Stage Finaxys" class="w-full h-128 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity" onclick="openImageViewer(this.src)">
+                </div>
+            </div>
+            
+            <!-- Stage Soup & Juice -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                <!-- Description du stage -->
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4 dark:text-white">Stage chez Soup & Juice</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Durant mon stage de deuxième année, j'ai développé un site web avec un espace de formation pour la société Soup & Juice dans le but de former des nouveaux employés. 
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="px-3 py-1 bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 rounded-full text-sm">Wix</span>
+                            <span class="px-3 py-1 bg-orange-100 text-blue-600 dark:bg-orange-900 dark:text-orange-300 rounded-full text-sm">JavaScript</span>
+                        </div>
+                        
+                        <!-- Compétences E5 -->
+                        <div class="mb-6">
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Compétences E5 :</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Gérer le patrimoine informatique</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Répondre aux incidents et aux demandes d'assistance</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Développer la présence en ligne</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Travailler en mode projet</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full text-sm border border-gray-300 dark:border-gray-500">Mettre à disposition des utilisateurs un service informatique</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <a href="projets/stagedoc.pdf" target="_blank" 
+                               class="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                Résumé du stage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Images du stage -->
+                <div class="grid grid-cols-1 gap-4">
+                    <img src="img/connexion_image.png" alt="Stage Soup & Juice" class="w-full h-50 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity" onclick="openImageViewer(this.src)">
+                    <img src="img/presentation_image.png" alt="Stage Soup & Juice" class="w-full h-50 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity" onclick="openImageViewer(this.src)">
+                </div>
+            </div>
+            </div>
+    </section>
+
+<section id="projects" class="py-24 bg-gray-50 dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Projets</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Projet 1 -->
+          <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2" 
+               onclick="openModal('project1')">
+              <img src="img/main_personnel_image.png" alt="Projet 1" class="w-full h-64 object-cover">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-3 dark:text-white">PPE Application Personnel</h3>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Application Java pour la gestion du personnel des ligues de la M2L.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                      <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">Java</span>
+                      <span class="px-3 py-1 bg-yellow-100 text-yellow-600 dark:bg-yellow-900 dark:text-yellow-300 rounded-full text-sm">JDBC</span>
+                      <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Projet 2 -->
+          <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2" 
+               onclick="openModal('project2')">
+              <img src="img/main_parking_image.png" alt="Projet 2" class="w-full h-64 object-cover">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-3 dark:text-white">PPE PARKING</h3>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Application web Laravel pour la gestion d'un parking et des ses places.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                      <span class="px-3 py-1 bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 rounded-full text-sm">Laravel</span>
+                      <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">PHP</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300 rounded-full text-sm">SQL</span>
+                      <span class="px-3 py-1 bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 rounded-full text-sm">MySQL</span>
+                      <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+                  </div>
+              </div>
+
+          </div>
+          <!-- Projet 3 -->
+          <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2" 
+               onclick="openModal('project3')">
+                <img src="img/main_soupjuice_image.png" alt="Projet 3" class="w-full h-64 object-cover">
+              <div class="p-6">
+                  <h3 class="text-xl font-bold mb-3 dark:text-white">Application web de création de contrats pour Soup & Juice</h3>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Application web de création de contrats pour Soup & Juice développée avec Laravel et utilisant une base de données MySQL.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                      <span class="px-3 py-1 bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 rounded-full text-sm">Laravel</span>
+                      <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">PHP</span>
+                      <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">Bootstrap</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300 rounded-full text-sm">SQL</span>
+                      <span class="px-3 py-1 bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 rounded-full text-sm">MySQL</span>
+                      <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+                  </div>
+              </div>
+          </div>
+<!-- Projet 5 -->
+<div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2" 
+onclick="openModal('project5')">
+<img src="img/logolaravel.webp" alt="Projet calculatrice Laravel" class="w-full h-48 object-cover">
+<div class="p-6">
+   <h3 class="text-xl font-bold mb-3 dark:text-white">Calculatrice PHP/Laravel</h3>
+   <p class="text-gray-600 dark:text-gray-300 mb-4">
+       Calculatrice PHP/Laravel avec une interface utilisateur. Utilisant le pattern MV (MVC).
+   </p>
+   <div class="flex flex-wrap gap-2">
+       <span class="px-3 py-1 bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 rounded-full text-sm">Laravel</span>
+       <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">PHP</span>
+       <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Linux</span>
+   </div>
+</div>
+</div>
+
+<!-- Projet 6 -->
+<div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2" 
+onclick="openModal('project6')">
+<img src="img/logo_windows.png" alt="TP SEVEN" class="w-full h-48 object-cover">
+<div class="p-6">
+   <h3 class="text-xl font-bold mb-3 dark:text-white">TP SEVEN</h3>
+   <p class="text-gray-600 dark:text-gray-300 mb-4">
+        Création d'utilisateurs et documentation windows 7.
+   </p>
+   <div class="flex flex-wrap gap-2">
+    <span class="px-3 py-1 bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300 rounded-full text-sm">Windows 7</span>
+   </div>
+</div>
+</div>
+
+<!-- Projet 7 -->
+<div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2" 
+onclick="openModal('project7')">
+<img src="img/main_sucrerie_img.png" alt="Config mac readme" class="w-full h-48 object-cover">
+<div class="p-6">
+   <h3 class="text-xl font-bold mb-3 dark:text-white">Modélisation d'une BDD (Sucrerie)</h3>
+   <p class="text-gray-600 dark:text-gray-300 mb-4">
+        Projet qui permet la gestion des données d'une boutique proposant des bonbon et gateau en gérant egalement ces clients.
+   </p>
+   <div class="flex flex-wrap gap-2 mb-4">
+       <span class="px-3 py-1 bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300 rounded-full text-sm">SQL</span> 
+       <span class="px-3 py-1 bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 rounded-full text-sm">MySQL</span>
+       <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+
+   </div>
+</div>
+</div>
+
+<!-- Projet 8 -->
+<div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2" 
+onclick="openModal('project8')">
+<img src="img/main_portfolio_img.png" alt="Doc C2SM" class="w-full h-48 object-cover">
+<div class="p-6">
+   <h3 class="text-xl font-bold mb-3 dark:text-white">Portfolio</h3>
+   <p class="text-gray-600 dark:text-gray-300 mb-4">
+       Création de mon Portfolio et répertoire de mes projets.
+   </p>
+   <div class="flex flex-wrap gap-3 mb-6">
+    <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">HTML</span>
+    <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">CSS</span>
+    <span class="px-3 py-1 bg-orange-100 text-blue-600 dark:bg-orange-900 dark:text-orange-300 rounded-full text-sm">JavaScript</span>
+    <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+</div>
+</div>
+</div>
+      </div>
+  </div>
+
+
+  <!-- Sous Projet 1 -->
+  <div id="modal-project1" class="modal">
+      <div class="modal-content bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-4 relative">
+          <button onclick="closeModal('project1')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+          </button>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                  <img src="img/main_personnel_image.png" alt="Projet 1" class="w-full h-64 object-cover rounded-lg" onclick="openImageViewer(this.src)">
+                  <div class="grid grid-cols-3 gap-2 mt-2">
+                    <img src="img/employer_personnel_image.png" alt="" class="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity" onclick="openImageViewer(this.src)">
+                    <img src="img/Ajouter_personnel.png" alt="" class="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity" onclick="openImageViewer(this.src)">
+                    <img src="img/modifier_personnel.png" alt="" class="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity" onclick="openImageViewer(this.src)">
+                </div>
+              </div>
+              <div>
+                  <h3 class="text-2xl font-bold mb-4 dark:text-white">Application Personnel</h3>
+                  <div class="space-y-4">
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Description</h4>
+                          <p class="text-gray-600 dark:text-gray-300">
+                              Application Java pour la gestion du personnel des ligues de la M2L.
+                          </p>
+                      </div>
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Technologies utilisées</h4>
+                          <div class="flex flex-wrap gap-2">
+                              <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">Java</span>
+                              <span class="px-3 py-1 bg-yellow-100 text-yellow-600 dark:bg-yellow-900 dark:text-yellow-300 rounded-full text-sm">JDBC</span>
+                              <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+                          </div>
+                      </div>
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Fonctionnalités clés</h4>
+                          <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                              <li>Ajout Suppression Modification des employés</li>
+                              <li>Ajout Suppression Modification des ligues</li>
+                              <li>Ajout d'administrateurs</li>
+                              <li>Connection à une base de données</li>
+                              <li>Interface graphique</li>
+                          </ul>
+                      </div>
+                      <div class="flex gap-4 mt-6">
+                          <a href="projets/Doc_personnel.pdf" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                              Voir le projet
+                          </a>
+                          <a href="https://github.com/WassimElArche/parking.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le code source
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Sous Projet 2 -->
+  <div id="modal-project2" class="modal">
+      <div class="modal-content bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-4 relative">
+          <button onclick="closeModal('project2')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+          </button>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                  <img src="img/main_parking_image.png" alt="Projet 2" class="w-full h-64 object-cover rounded-lg" onclick="openImageViewer(this.src)">
+                  <div class="grid grid-cols-3 gap-2 mt-2">
+                    <img src="img/user_parking_image.png" alt="" class="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity" onclick="openImageViewer(this.src)">
+                    <img src="img/arbrepng.png" alt="" class="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity" onclick="openImageViewer(this.src)">
+                </div>
+              </div>
+              <div>
+                  <h3 class="text-2xl font-bold mb-4 dark:text-white">PPE PARKING</h3>
+                  <div class="space-y-4">
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Description</h4>
+                          <p class="text-gray-600 dark:text-gray-300">
+                              Application web développée avec Laravel pour la gestion d'un parking et des ses places.
+                          </p>
+                      </div>
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Technologies utilisées</h4>
+                          <div class="flex flex-wrap gap-2">
+                              <span class="px-3 py-1 bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 rounded-full text-sm">Laravel</span>
+                              <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">PHP</span>
+                              <span class="px-3 py-1 bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300 rounded-full text-sm">SQL</span>
+                              <span class="px-3 py-1 bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 rounded-full text-sm">MySQL</span>
+                          </div>
+                      </div>
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Fonctionnalités clés</h4>
+                          <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                              <li>Authentification des utilisateurs</li>
+                              <li>Demande de réservation de place</li>
+                              <li>Tableau de bord administrateur</li>
+                          </ul>
+                      </div>
+                      <div class="flex gap-4 mt-6">
+                        <a href="#" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le projet
+                        </a>
+                        <a href="https://github.com/WassimElArche/parking.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                          Voir le code source
+                        </a>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Sous Projet 3 -->
+  <div id="modal-project3" class="modal">
+      <div class="modal-content bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-4 relative">
+          <button onclick="closeModal('project3')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+          </button>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                  <img src="img/main_soupjuice_image.png" alt="Projet 3" class="w-full h-64 object-cover rounded-lg" onclick="openImageViewer(this.src)">
+                  <div class="grid grid-cols-3 gap-2 mt-2">
+                    <img src="img/utilisateur_image.png" alt="" class="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity" onclick="openImageViewer(this.src)">
+                    <img src="img/interface_user_image.png" alt="" class="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity" onclick="openImageViewer(this.src)">
+                    <!-- <img src="img/arbrepng.png" alt="" class="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-opacity" onclick="openImageViewer(this.src)"> -->
+                </div>
+              </div>
+              <div>
+                  <h3 class="text-2xl font-bold mb-4 dark:text-white"> Application web de création de contrats pour Soup & Juice</h3>
+                  <div class="space-y-4">
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Description</h4>
+                          <p class="text-gray-600 dark:text-gray-300">
+                            Application web de création de contrats pour Soup & Juice développée avec Laravel et utilisant une base de données MySQL.
+                            Le projet n'a pas encore été terminé, mais j'ai pu en apprendre beaucoup sur le développement d'applications web et la modélisation des bases de données.
+                          </p>
+                      </div>
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Technologies utilisées</h4>
+                          <div class="flex flex-wrap gap-2">
+                              <span class="px-3 py-1 bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 rounded-full text-sm">Laravel</span>
+                              <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">PHP</span>
+                              <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">Bootstrap</span>
+                              <span class="px-3 py-1 bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300 rounded-full text-sm">SQL</span>
+                              <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">MySQL</span>
+                          </div>
+                      </div>
+                      <div>
+                          <h4 class="font-semibold text-lg mb-2 dark:text-white">Fonctionnalités clés</h4>
+                          <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                              <li>Gestion des contrats par les employés</li>
+                              <li>Gestion des signatures électroniques</li>
+                              <li>Génération de PDF</li>
+                              <li>Base de données MySQL</li>
+                          </ul>
+                      </div>
+                      <div class="flex gap-4 mt-6">
+                          <a href="" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                              Voir le projet
+                          </a>
+                          <a href="https://github.com/Meyodb/gestion-contrats.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le code source
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div> 
+<!-- Sous Projet 5 -->
+<div id="modal-project5" class="modal">
+    <div class="modal-content bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-4 relative">
+        <button onclick="closeModal('project5')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <img src="img/logolaravel.webp" alt="API REST" class="w-full h-64 object-cover rounded-lg" onclick="openImageViewer(this.src)" >
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-4 dark:text-white">Calculatrice PHP/Laravel</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Description</h4>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Calculatrice PHP/Laravel avec une interface utilisateur. Utilisant le pattern MV (MVC).
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Technologies utilisées</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 rounded-full text-sm">Laravel</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">PHP</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Linux</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Fonctionnalités clés</h4>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                            <li>Addition/Soustraction</li>
+                            <li>Multiplication/Division</li>
+                            <li>Racine carrée/Sinus</li>
+                            <li>Pattern MVC</li>
+                        </ul>
+                    </div>
+                    <div class="flex gap-4 mt-6">
+                        <a href="projets/Doc_calculatrice.pdf" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le projet
+                        </a>
+                        <a href="https://github.com/Meyodb/calculatrice.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="projets-container">
-      <!-- TP Personnel -->
-      <div class="projet-card">
-        <h3>TP Personnel</h3>
-        <p>Mise en place d'une application "Personnel" permettant de gérer des ligues ainsi que leurs employés.</p>
-        <a href="tp-personnel.pdf" class="projet-btn">
-          <button class="btn-violet">Voir le projet</button>
-        </a>
-      </div>
-
-      <!-- TP Sucrerie -->
-      <div class="projet-card">
-        <h3>TP Sucrerie</h3>
-        <p>Mise en place d'un serveur MySQL et d'une base de données "Sucrerie".</p>
-        <a href="tp-sucrerie.pdf" class="projet-btn">
-          <button class="btn-violet">Voir le projet</button>
-        </a>
-      </div>
-
-      <!-- TP Calculatrice -->
-      <div class="projet-card">
-        <h3>TP Calculatrice</h3>
-        <p>Création d'une calculatrice avec Laravel.</p>
-        <a href="https://github.com/Meyodb/calculatrice.git" class="projet-btn">
-          <button class="btn-violet">Voir le projet</button>
-        </a>
-      </div>
-
-      <!-- TP Seven -->
-      <div class="projet-card">
-        <h3>TP Seven</h3>
-        <p>Création d'une machine virtuelle sous Windows 7 et initialisation des utilisateurs.</p>
-        <a href="tp-seven.pdf" class="projet-btn">
-          <button class="btn-violet">Voir le projet</button>
-        </a>
-      </div>
-
-      <!-- TP Serveur Apache -->
-      <div class="projet-card">
-        <h3>TP Serveur Apache</h3>
-        <p>Mise en place d'un serveur Apache sous Linux Ubuntu via une machine virtuelle.</p>
-        <a href="tp-apache.pdf" class="projet-btn">
-          <button class="btn-violet">Voir le projet</button>
-        </a>
-      </div>
-
-      <!-- TP Formulaire -->
-      <div class="projet-card">
-        <h3>Création Page produit</h3>
-        <p>Création d'une page produit pour mon stage de 1er année</p>
-        <a href="Doc stage 1er.pdf" class="projet-btn">
-          <button class="btn-violet">Voir le projet</button>
-        </a>
-      </div>
+<!-- Sous Projet 6 -->
+<div id="modal-project6" class="modal">
+    <div class="modal-content bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-4 relative">
+        <button onclick="closeModal('project6')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <img src="img/logo_windows.png" alt="Documentation Windows 7" class="w-full h-64 object-cover rounded-lg" onclick="openImageViewer(this.src)">
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-4 dark:text-white">TP SEVEN</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Description</h4>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Création d'utilisateurs et documentation windows 7.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Technologie utilisé</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300 rounded-full text-sm">Windows 7</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Etapes réalisées</h4>
+                        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                            <li>Création d'utilisateurs</li>
+                            <li>Bloquer le changement de mot de passe</li>
+                            <li>Configuration des utilisateurs</li>
+                            <li>Trouver configuration IP</li>
+                            <li>Créer un lecteur logique</li>
+                        </ul>
+                    </div>
+                    <div class="flex gap-4 mt-6">
+                        <a href="projets/Doc-SEVEN-TP1-METRAULYSSE.pdf" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le projet
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+<!-- Sous Projet 7 -->
+<div id="modal-project7" class="modal">
+    <div class="modal-content bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-4 relative">
+        <button onclick="closeModal('project7')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <img src="img/main_sucrerie_img.png" alt="Config mac readme" class="w-full h-64 object-cover rounded-lg" onclick="openImageViewer(this.src)">
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-4 dark:text-white"></h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Description</h4>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Projet qui permet la gestion des données d'une boutique proposant des bonbon et gateau en gérant egalement ces clients. 
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Technologies utilisées</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-300 rounded-full text-sm">SQL</span> 
+                            <span class="px-3 py-1 bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 rounded-full text-sm">MySQL</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 mt-6">
+                        <a href="projets/Doc_sucrerie.pdf" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le projet
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sous Projet 8 -->
+<div id="modal-project8" class="modal">
+    <div class="modal-content bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-4 relative">
+        <button onclick="closeModal('project8')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <img src="img/main_portfolio_img.png" alt="Doc C2SM" class="w-full h-64 object-cover rounded-lg" onclick="openImageViewer(this.src)">
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-4 dark:text-white">Portfolio</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Description</h4>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Création de mon Portfolio et répertoire de mes projets.
+                        </p>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2 dark:text-white">Technologies utilisées</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">HTML</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">CSS</span>
+                                <span class="px-3 py-1 bg-orange-100 text-blue-600 dark:bg-orange-900 dark:text-orange-300 rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 mt-6">
+                        <a href="" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le projet
+                        </a>
+                        <a href="https://github.com/Meyodb/Mehdi.github.io.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<section id="veille" class="py-24 bg-white dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Veille Technologique</h2>
+      <div class="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                  <h3 class="text-2xl font-bold mb-6 dark:text-white">iOS & Écosystème Apple</h3>
+                  <p class="text-gray-600 dark:text-gray-300 mb-6">
+                      Je réalise ma veille technologique en utilisant principalement des flux RSS et des newsletters spécialisées.
+                      Cela me permet de suivre efficacement les actualités et nouveautés des systèmes d'exploitation Apple, avec un focus particulier sur iOS.
+                  </p>
+                  <p class="text-gray-600 dark:text-gray-300 mb-6">
+                      Les mises à jour des systèmes d'exploitation d'Apple (iOS, iPadOS, macOS, watchOS, tvOS) apportent régulièrement de nouvelles fonctionnalités et des améliorations de sécurité. Suivre ces évolutions est essentiel pour le développement d'applications et la maintenance de services compatibles.
+                  </p>
+                  <p class="text-gray-600 dark:text-gray-300 mb-6">
+                      Cette veille me permet de rester informé sur les nouvelles APIs, les changements d'interface, les fonctionnalités de confidentialité et les évolutions de performance qui pourraient impacter le développement d'applications ou l'expérience utilisateur.
+                  </p>
+                  <div class="flex flex-wrap gap-3 mb-6">
+                      <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">iOS</span>
+                      <span class="px-3 py-1 bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 rounded-full text-sm">SwiftUI</span>
+                      <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Développement Mobile</span>
+                      <span class="px-3 py-1 bg-orange-100 text-orange-600 dark:bg-orange-900 dark:text-orange-300 rounded-full text-sm">Expérience Utilisateur</span>
+                  </div>
+                  <a href="https://developer.apple.com/news/" target="_blank" class="text-blue-500 hover:underline flex items-center">
+                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                      </svg>
+                      Apple Developer News
+                  </a>
+              </div>
+              <div class="space-y-6">
+                  <div class="bg-white dark:bg-gray-700 rounded-lg p-6">
+                      <div class="flex items-center mb-4">
+                          <img src="img/rss.png" alt="RSS Feeds" class="w-12 h-12">
+                          <h4 class="text-xl font-bold ml-4 dark:text-white">Sources RSS et Newsletters</h4>
+                      </div>
+                      <p class="text-gray-600 dark:text-gray-300 mb-4">
+                          Mes principales sources d'information pour suivre l'écosystème Apple :
+                      </p>
+                      <ul class="text-gray-600 dark:text-gray-300 list-disc pl-5 space-y-1">
+                          <li>MacRumors.com (RSS)</li>
+                          <li>9to5Mac.com (RSS)</li>
+                          <li>Apple Developer Newsletter</li>
+                          <li>iMore.com (RSS)</li>
+                          <li>AppleInsider.com (RSS)</li>
+                          <li>Subreddit r/iOSProgramming</li>
+                      </ul>
+                  </div>
+                  <img src="img/veille_apple_image.jpg" alt="Capture d'écran des mises à jour iOS" class="rounded-lg shadow-md w-full">
+              </div>
+          </div>
+          
+          <!-- Actualités récentes -->
+          <div class="mt-12">
+              <h3 class="text-2xl font-bold mb-6 dark:text-white text-center">Dernières actualités de ma veille</h3>
+              
+              <!-- Filtres des catégories -->
+              <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <button class="px-4 py-2 bg-blue-500 text-white rounded-lg active-filter" data-filter="tous">Tous</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded-lg" data-filter="ios">iOS</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded-lg" data-filter="hardware">Hardware</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded-lg" data-filter="apps">Apps</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded-lg" data-filter="services">Services</button>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-container">
+                  <!-- Les articles seront générés dynamiquement ici -->
+              </div>
+              
+              <!-- Modèle d'article à cloner par JavaScript -->
+              <template id="article-template">
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow overflow-hidden article-card" data-category="">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-gray-500 text-sm dark:text-gray-400 date-placeholder"></p>
+                            <span class="hidden px-2 py-1 text-xs rounded-full bg-green-500 text-white new-badge">Nouveau</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-3 dark:text-white title-placeholder"></h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 description-placeholder"></p>
+                        <a href="#" target="_blank" class="text-blue-500 hover:underline inline-flex items-center link-placeholder">
+                            Lire l'article
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+              </template>
+              
+              <!-- Outils de veille -->
+              <div class="mt-10 p-6 bg-white dark:bg-gray-700 rounded-lg shadow">
+                  <h4 class="text-xl font-bold mb-4 dark:text-white">Mes outils de veille technologique</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                          <h5 class="font-semibold mb-2 dark:text-white">Agrégateurs RSS</h5>
+                          <p class="text-gray-600 dark:text-gray-300 mb-2">
+                              J'utilise principalement Feedly pour centraliser et organiser mes flux RSS, avec des catégories pour suivre différents aspects de l'écosystème Apple.
+                          </p>
+                      </div>
+                      <div>
+                          <h5 class="font-semibold mb-2 dark:text-white">Modalités de veille</h5>
+                          <p class="text-gray-600 dark:text-gray-300">
+                              Ma veille est quotidienne pour suivre l'actualité immédiate, avec une synthèse hebdomadaire des informations les plus pertinentes pour mes projets de développement.
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+<!-- Script pour afficher les articles filtrés -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Référence aux éléments du DOM
+    const articlesContainer = document.getElementById('articles-container');
+    const template = document.getElementById('article-template');
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    
+    // Fonction pour récupérer les articles depuis l'API
+    async function fetchArticles(category = 'tous') {
+      try {
+        // Dans un environnement de production, utilisez le chemin relatif ou absolu vers votre API
+        const response = await fetch(`/rss_parser/api/?category=${category}`);
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des articles');
+        }
+        const data = await response.json();
+        return data.articles || [];
+      } catch (error) {
+        console.error('Erreur:', error);
+        // En cas d'erreur, utiliser les données simulées comme fallback
+        return simulateArticles(category);
+      }
+    }
+    
+    // Fonction pour simuler des articles (utilisé comme fallback si l'API n'est pas accessible)
+    function simulateArticles(category) {
+      const articles = [
+        {
+          id: "1",
+          date: "21 Mars 2025",
+          title: "iOS 19 : Refonte majeure inspirée de visionOS",
+          description: "iOS 19 s'apprête à recevoir une refonte visuelle inspirée de visionOS, avec des interfaces plus transparentes. Il s'agirait de la plus importante refonte de l'interface depuis iOS 7.",
+          link: "https://www.macrumors.com/2025/03/20/ios-19-rumors-list/",
+          categories: ["ios"],
+          isNew: true
+        },
+        {
+          id: "2",
+          date: "20 Mars 2025",
+          title: "Restructuration chez Apple : Siri sous nouvelle direction",
+          description: "Apple réorganise ses équipes suite au retard d'Apple Intelligence. Mike Rockwell, responsable du Vision Pro, prend la direction de l'équipe Siri, auparavant sous la responsabilité de John Giannandrea.",
+          link: "https://www.macrumors.com/2025/03/20/siri-leadership-shakeup/",
+          categories: ["ios"],
+          isNew: true
+        },
+        {
+          id: "3",
+          date: "21 Mars 2025",
+          title: "L'iPhone pliable utilisera du métal liquide pour ses charnières",
+          description: "Selon l'analyste Ming-Chi Kuo, Apple utilisera du métal liquide pour les charnières de son futur iPhone pliable afin d'améliorer la durabilité et réduire les plis sur l'écran.",
+          link: "https://www.macrumors.com/2025/03/21/apple-liquid-metal-foldable-iphone-hinges/",
+          categories: ["hardware"],
+          isNew: true
+        },
+        {
+          id: "4",
+          date: "20 Mars 2025",
+          title: "Assassin's Creed Shadows disponible sur Mac",
+          description: "Assassin's Creed Shadows est maintenant disponible sur Mac, marquant la première sortie simultanée d'un titre Assassin's Creed sur Mac et les autres plateformes. Le jeu nécessite une puce Apple Silicon.",
+          link: "https://www.macrumors.com/2025/03/20/assassins-creed-shadows-now-available-mac/",
+          categories: ["apps"],
+          isNew: true
+        },
+        {
+          id: "5",
+          date: "21 Mars 2025",
+          title: "Apple TV+ renouvelle 'Severance' pour une troisième saison",
+          description: "Suite au succès de la deuxième saison, Apple TV+ a officiellement renouvelé la série 'Severance' pour une troisième saison. Cette série a battu des records d'audience sur la plateforme.",
+          link: "https://www.macrumors.com/2025/03/21/apple-officially-renews-severance-for-season-3/",
+          categories: ["services"],
+          isNew: true
+        },
+        {
+          id: "6",
+          date: "21 Mars 2025",
+          title: "Rare Apple-1 Computer vendu pour 375 000 $",
+          description: "Un rare Apple-1 fonctionnel a été vendu aux enchères pour 375 000 $. Cet ordinateur, le premier vendu par Apple, était le 'Bayville' Apple-1, le n°91 sur les 104 machines répertoriées.",
+          link: "https://www.macrumors.com/2025/03/21/apple-1-computer-375000/",
+          categories: ["hardware"],
+          isNew: true
+        },
+        {
+          id: "7",
+          date: "19 Mars 2025",
+          title: "Mac Pro avec puce M3 Ultra : ce qu'on sait",
+          description: "Apple devrait mettre à jour le Mac Pro avec une puce M3 Ultra plus tard cette année, apportant des performances considérablement améliorées par rapport au modèle M2 Ultra actuel.",
+          link: "https://www.macrumors.com/2025/03/20/mac-pro-2025-rumors/",
+          categories: ["hardware"],
+          isNew: false
+        },
+        {
+          id: "8",
+          date: "19 Mars 2025",
+          title: "Apple AirTag 2 pourrait être le prochain produit Apple",
+          description: "Selon les rumeurs, la deuxième génération d'AirTag serait le prochain produit lancé par Apple, avec une portée trois fois plus grande et une meilleure intégration avec le Vision Pro.",
+          link: "https://www.macrumors.com/2025/03/20/airtag-2-soon/",
+          categories: ["hardware"],
+          isNew: false
+        },
+        {
+          id: "9",
+          date: "18 Mars 2025",
+          title: "iOS 19 prendra en charge tous les iPhone compatibles avec iOS 18",
+          description: "Selon de nouvelles rumeurs, iOS 19 sera compatible avec tous les iPhone pouvant exécuter iOS 18, y compris l'iPhone XR, XS et XS Max, sortis en 2018.",
+          link: "https://www.macrumors.com/2025/03/20/ios-19-rumors-list/",
+          categories: ["ios"],
+          isNew: false
+        }
+      ];
+      
+      if (category === 'tous') {
+        return articles;
+      }
+      
+      return articles.filter(article => article.categories.includes(category));
+    }
+    
+    // Fonction pour afficher les articles
+    async function renderArticles(category = 'tous') {
+      // Afficher un indicateur de chargement
+      articlesContainer.innerHTML = '<div class="col-span-full text-center py-8"><div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div></div>';
+      
+      try {
+        // Récupérer les articles
+        const articles = await fetchArticles(category);
+        
+        // Vider le conteneur
+        articlesContainer.innerHTML = '';
+        
+        if (articles.length === 0) {
+          const noArticlesMessage = document.createElement('div');
+          noArticlesMessage.className = 'col-span-full text-center text-gray-500 dark:text-gray-400 py-8';
+          noArticlesMessage.textContent = 'Aucun article ne correspond à cette catégorie.';
+          articlesContainer.appendChild(noArticlesMessage);
+          return;
+        }
+        
+        // Afficher les articles
+        articles.forEach(article => {
+          // Cloner le template
+          const articleElement = template.content.cloneNode(true);
+          
+          // Mettre à jour les données de l'article
+          const card = articleElement.querySelector('.article-card');
+          card.dataset.category = article.categories && article.categories.length > 0 ? article.categories[0] : '';
+          
+          const dateElement = articleElement.querySelector('.date-placeholder');
+          dateElement.textContent = article.date;
+          
+          const titleElement = articleElement.querySelector('.title-placeholder');
+          titleElement.textContent = article.title;
+          
+          const descriptionElement = articleElement.querySelector('.description-placeholder');
+          descriptionElement.textContent = article.description;
+          
+          const linkElement = articleElement.querySelector('.link-placeholder');
+          linkElement.href = article.link;
+          
+          // Afficher le badge "Nouveau" si nécessaire
+          const newBadge = articleElement.querySelector('.new-badge');
+          if (article.isNew) {
+            newBadge.classList.remove('hidden');
+          }
+          
+          // Ajouter l'article au conteneur
+          articlesContainer.appendChild(articleElement);
+        });
+        
+        // Ajouter une indication de dernière mise à jour
+        const lastUpdateInfo = document.createElement('div');
+        lastUpdateInfo.className = 'col-span-full text-center text-gray-400 dark:text-gray-500 text-xs mt-6';
+        lastUpdateInfo.textContent = 'Articles mis à jour automatiquement depuis MacRumors et iMore';
+        articlesContainer.appendChild(lastUpdateInfo);
+        
+      } catch (error) {
+        console.error('Erreur lors du rendu des articles:', error);
+        articlesContainer.innerHTML = '<div class="col-span-full text-center text-red-500 py-8">Une erreur est survenue lors du chargement des articles.</div>';
+      }
+    }
+    
+    // Gestionnaire d'événements pour les boutons de filtre
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Mettre à jour l'apparence des boutons
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-blue-500', 'text-white');
+          btn.classList.add('bg-gray-200', 'text-gray-800', 'dark:bg-gray-700', 'dark:text-white');
+          btn.classList.remove('active-filter');
+        });
+        
+        this.classList.remove('bg-gray-200', 'text-gray-800', 'dark:bg-gray-700', 'dark:text-white');
+        this.classList.add('bg-blue-500', 'text-white', 'active-filter');
+        
+        // Filtrer les articles
+        const filterCategory = this.dataset.filter;
+        renderArticles(filterCategory);
+      });
+    });
+    
+    // Afficher tous les articles au chargement initial
+    renderArticles();
+    
+    // Vérification périodique des nouveaux articles (toutes les 5 minutes)
+    setInterval(function() {
+      const activeFilter = document.querySelector('.active-filter').dataset.filter;
+      renderArticles(activeFilter);
+    }, 300000); // 5 minutes en millisecondes
+  });
+</script>
+</section>
+<section id="e5" class="py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Épreuve E5</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold dark:text-white">L'épreuve E5 du BTS SIO</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    L'épreuve E5 est une épreuve professionnelle du BTS SIO. Elle permet d'évaluer les compétences acquises en développement d'applications et en gestion de projets informatiques.
+                </p>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Cette épreuve se compose de la présentation d'un projet développé en stage ou en formation, ainsi que d'une analyse de la démarche de projet et des choix techniques effectués.
+                </p>
+                <div class="flex gap-4">
+                    <a href="projets/tableau E5.pdf" target="_blank" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 inline-block">
+                        Voir le tableau de compétences
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="img/tableau E5.png" alt="Tableau de compétences E5" class="rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition-opacity" onclick="openImageModal()">
+            </div>
+        </div>
+    </div>
+</section>
+<div id="imageModal" class="modal">
+    <div class="modal-content max-w-4xl mx-auto p-4">
+        <button onclick="closeImageModal()" class="absolute top-4 right-4 text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <img src="img/tableau E5.png" alt="Tableau de compétences E5" class="w-full h-auto">
+    </div>
+</div>
+<section id="contact" class="py-24 bg-white dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Contact</h2>
+      <div class="flex justify-center">
+          <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl shadow-lg max-w-3xl w-full">
+              <h3 class="text-2xl font-bold mb-8 dark:text-white text-center">Restons en contact</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  <!-- Email -->
+                  <div class="flex flex-col items-center text-center">
+                      <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-full mb-3">
+                          <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                          </svg>
+                      </div>
+                      <p class="text-sm text-gray-600 dark:text-gray-300">Email</p>
+                      <p class="font-medium dark:text-white">mehdisse20@gmail.com</p>
+                  </div>
+                  
+                  <!-- Localisation -->
+                  <div class="flex flex-col items-center text-center">
+                      <div class="bg-green-100 dark:bg-green-900 p-3 rounded-full mb-3">
+                          <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                          </svg>
+                      </div>
+                      <p class="text-sm text-gray-600 dark:text-gray-300">Localisation</p>
+                      <p class="font-medium dark:text-white">Paris, France</p>
+                  </div>
+                  
+                  <!-- Disponibilité -->
+                  <div class="flex flex-col items-center text-center">
+                      <div class="bg-purple-100 dark:bg-purple-900 p-3 rounded-full mb-3">
+                          <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                          </svg>
+                      </div>
+                      <p class="text-sm text-gray-600 dark:text-gray-300">Disponibilité</p>
+                      <p class="font-medium dark:text-white">Lun-Ven, 9h-18h</p>
+                  </div>
+              </div>
+              
+              <!-- Réseaux sociaux -->
+              <div class="text-center mb-8">
+                  <h4 class="text-lg font-semibold mb-4 dark:text-white">Réseaux sociaux</h4>
+                  <div class="flex justify-center space-x-4">
+                      <a href="https://github.com/UlysseMtr" target="_blank" class="bg-gray-100 dark:bg-gray-600 p-3 rounded-full hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors">
+                          <svg class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                          </svg>
+                      </a>
+                      <a href="https://www.linkedin.com/in/metraulysse/" target="_blank" class="bg-gray-100 dark:bg-gray-600 p-3 rounded-full hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors">
+                          <svg class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+              
+              <!-- Bouton email -->
+              <div class="text-center">
+                  <a href="mailto:mehdisse20@gmail.com" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors duration-300">
+                      M'envoyer un email
+                  </a>
+              </div>
+          </div>
+      </div>
   </div>
 </section>
-<!-- End Projets Section -->
-  
-  <section id="Veille" class="Veille">
-      <div class="container">
-        <div class="section-title">
-          <h2>Veille technologique</h2>
-          <a href="Veille Mehdi Amine.ppsx" target="_blank" style="text-decoration: none;">
-            <button class="custom-button">
-                Voir la Veille
-            </button>
-          </a>
-    </section>
-    
-    <section id="E4" class="E4">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Épreuve E4</h2>
-          <p>ÉPREUVE E4 - CONCEPTION ET MAINTENANCE DE SOLUTION INFORMATIQUE</p>
-        </div>
-          <p>Cette épreuve vise à évaluer les compétences acquises par le candidat dans le domaine de la conception et de la maintenance de solutions informatiques sur une des solutions auquel il aura réalisées sur ses 2 ans d'apprentissage.</p> 
-          <p>Produire ou adapter une solution applicative ou d'infrastructure
-            Apprécier la qualité de la solution obtenue par rapport à la demande initiale et aux contraintes de production
-            Traiter les imprévus qui caractérisent de nombreuses activités du domaine</p>
-          <p>C'est une épreuve en deux parties :</p>
-          <p>Un premier entretien de 15 minutes pour que le candidat explique le projet sélectionné et que le jury expose les modifications à réaliser. Après cela, le candidat a 20 minutes pour apporter les modifications demandées par le jury.</p>
-          <p>Un second entretien de 15 minutes pour que le candidat présente les modifications et le jury le questionne. Après cela, le candidat a maximum une heure de pratique pour appliquer les modifications sur son projet et réaliser une documentation de test.</p>
-          <a href="Feuille E4.pdf" target="_blank" style="text-decoration: none;">
-            <button class="custom-button">
-                Voir la Feuille E4
-            </button>
-          </a>
-    </section>
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Me Contacter</h2>
-        </div>
-
-        <div class="row" data-aos="fade-in">
-
-          <div class="col-lg-12 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Adresse:</h4>
-                <p> 5 rue de La Madone, France</p>
+<!-- Footer -->
+<footer class="bg-gray-50 dark:bg-gray-900 text-gray-300">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+              <h3 class="text-white text-lg font-bold mb-4">Mehdi AMINE</h3>
+              <p class="mb-4">Développeur en étude et passionné par le développement.</p>
+              <div class="flex space-x-4">
+                  <a href="https://github.com/UlysseMtr" target="_blank" class="hover:text-white transition-colors">
+                      <span class="sr-only">GitHub</span>
+                      <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/metraulysse/" target="_blank" class="hover:text-white transition-colors">
+                      <span class="sr-only">LinkedIn</span>
+                      <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                  </a>
               </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>E-mail:</h4>
-                <p>mehdisse20@gmail.com</p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Numéro de téléphone:</h4>
-                <p>07 67 70 31 65</p>
-              </div>
-
-
           </div>
-
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Votre Nom</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Votre E-mail</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="name">Objet</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Chargement</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Votre message a été envoyer, Merci!</div>
-              </div>
-              <div class="text-center"><button type="submit">Envoyer</button></div>
-            </form>
+          <div>
+              <h3 class="text-white text-lg font-bold mb-4">Navigation</h3>
+              <ul class="space-y-2">
+                  <li><a href="#accueil" class="hover:text-white transition-colors">Accueil</a></li>
+                  <li><a href="#about" class="hover:text-white transition-colors">À propos</a></li>
+                  <li><a href="#bts" class="hover:text-white transition-colors">BTS SIO</a></li>
+                  <li><a href="#parcours" class="hover:text-white transition-colors">Parcours</a></li>
+                  <li><a href="#stage" class="hover:text-white transition-colors">Stage</a></li>
+                  <li><a href="#skills" class="hover:text-white transition-colors">Compétences</a></li>
+                  <li><a href="#projects" class="hover:text-white transition-colors">Projets</a></li>
+                  <li><a href="#veille" class="hover:text-white transition-colors">Veille Technologique</a></li>
+                  <li><a href="#e5" class="hover:text-white transition-colors">Epreuve E5</a></li>
+                  <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+              </ul>
           </div>
-
-        </div>
-
+          <div>
+              <h3 class="text-white text-lg font-bold mb-4">Contact</h3>
+              <ul class="space-y-2">
+                  <li class="flex items-center">
+                      <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                      </svg>
+                      mehdisse20@gmail.com
+                  </li>
+                  <li class="flex items-center">
+                      <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      Paris, France
+                  </li>
+              </ul>
+          </div>
       </div>
-    </section><!-- End Contact Section -->
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <p>&copy; 2024 Mehdi AMINE. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleLight = document.getElementById('theme-toggle-light');
+        const themeToggleDark = document.getElementById('theme-toggle-dark');
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLight.classList.remove('hidden');
+            themeToggleDark.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleLight.classList.add('hidden');
+            themeToggleDark.classList.remove('hidden');
+        }
 
-  </main><!-- End #main -->
+        themeToggleBtn.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            themeToggleLight.classList.toggle('hidden');
+            themeToggleDark.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        function openModal(projectId) {
+        document.getElementById(`modal-${projectId}`).classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
+    function closeModal(projectId) {
+        document.getElementById(`modal-${projectId}`).classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const modals = document.getElementsByClassName('modal');
+            for (let modal of modals) {
+                modal.classList.remove('active');
+            }
+            document.body.style.overflow = 'auto';
+        }
+    });
+    function openImageViewer(imageSrc) {
+    const modal = document.getElementById('imageViewerModal');
+    const modalImage = document.getElementById('modalImage');
+    modalImage.src = imageSrc;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+function closeImageViewer() {
+    const modal = document.getElementById('imageViewerModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+// Fermer avec Escape
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageViewer();
+    }
+});
 
+// Fermer en cliquant en dehors de l'image
+document.getElementById('imageViewerModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+        closeImageViewer();
+    }
+});
+    
+</script>
+<!--agrandissement des images -->
+<div id="imageViewerModal" class="modal" style="display: none;">
+    <div class="modal-content bg-transparent p-4">
+        <button onclick="closeImageViewer()" class="absolute top-2 right-2 text-white bg-gray-800 rounded-full p-2 hover:bg-gray-700 z-50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <img id="modalImage" src="" alt="Image agrandie" class="rounded-lg shadow-xl">
+    </div>
+</div>
 </body>
-
+</html>
+</html>
 </html>
