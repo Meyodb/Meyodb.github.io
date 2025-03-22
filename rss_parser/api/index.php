@@ -79,5 +79,4 @@ try {
     // En cas d'erreur, envoyer un message d'erreur
     sendResponse(["error" => "Erreur lors de la récupération des articles: " . $e->getMessage()], 500);
 }
-
-?> 
+?>
