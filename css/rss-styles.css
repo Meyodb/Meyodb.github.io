@@ -1,3 +1,4 @@
+/* Styles pour le système de flux RSS avec hauteur réduite */
 .articles-grid {
   display: flex;
   flex-wrap: nowrap;
