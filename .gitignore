@@ -1,0 +1,7 @@
+# Dossiers et fichiers à ignorer
+rss_parser/logs/*
+!rss_parser/logs/.gitkeep
+.DS_Store
+node_modules/
+.env
+*.log 
