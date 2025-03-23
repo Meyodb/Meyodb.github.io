@@ -899,6 +899,26 @@ onclick="openModal('project8')">
       </div>
   </div>
 
+  <!-- Projet 9 -->
+<div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2" 
+onclick="openModal('project8')">
+<img src="img/main_statup_image.png" alt="Doc C2SM" class="w-full h-48 object-cover">
+<div class="p-6">
+   <h3 class="text-xl font-bold mb-3 dark:text-white">PRYCE - Comparateur de prix intelligent</h3>
+   <p class="text-gray-600 dark:text-gray-300 mb-4">
+       Création d'une startup d'application web pour comparer les prix des produits de manière intelligente.
+   </p>
+   <div class="flex flex-wrap gap-3 mb-6">
+    <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">HTML</span>
+    <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">CSS</span>
+    <span class="px-3 py-1 bg-orange-100 text-blue-600 dark:bg-orange-900 dark:text-orange-300 rounded-full text-sm">JavaScript</span>
+    <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+</div>
+</div>
+</div>
+      </div>
+  </div>
+
 
   <!-- Sous Projet 1 -->
   <div id="modal-project1" class="modal">
@@ -1246,6 +1266,50 @@ onclick="openModal('project8')">
                     </div>
                     <div class="flex gap-4 mt-6">
                         <a href="" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le projet
+                        </a>
+                        <a href="https://github.com/Meyodb/Meyodb.github.io.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                            Voir le code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sous Projet 9 -->
+<div id="modal-project9" class="modal">
+    <div class="modal-content bg-white dark:bg-gray-800 rounded-xl p-6 max-w-4xl mx-4 relative">
+        <button onclick="closeModal('project9')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <img src="img/main_statup_image.png" alt="Doc C2SM" class="w-full h-64 object-cover rounded-lg" onclick="openImageViewer(this.src)">
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-4 dark:text-white">PRYCE - Comparateur de prix intelligent</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 dark:text-white">Description</h4>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Création d'une startup d'application web pour comparer les prix des produits de manière intelligente.
+                        </p>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2 dark:text-white">Technologies utilisées</h4>
+                            <div class="flex flex-wrap gap-2">  
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">HTML</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full text-sm">CSS</span>
+                                <span class="px-3 py-1 bg-orange-100 text-blue-600 dark:bg-orange-900 dark:text-orange-300 rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 rounded-full text-sm">Git</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://pryce-startup.vercel.app/" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
                             Voir le projet
                         </a>
                         <a href="https://github.com/Meyodb/Meyodb.github.io.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
