@@ -1404,7 +1404,7 @@ onclick="openModal('project8')">
                           </div>
                       </div>
                       <div class="flex justify-between">
-                          <a href="/rss_parser/api/?force_update=true" id="force-update-btn" class="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
+                          <a href="rss_parser/api/?force_update=true" id="force-update-btn" class="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
                               Forcer une mise à jour
                           </a>
                       </div>
@@ -1458,7 +1458,7 @@ onclick="openModal('project8')">
         lastUpdateTimeElement.textContent = "Chargement...";
         
         // Récupérer les articles depuis l'API PHP
-        const response = await fetch(`/rss_parser/api/?category=${category}`);
+        const response = await fetch(`rss_parser/api/?category=${category}`);
         if (!response.ok) {
           throw new Error('Erreur lors de la récupération des articles');
         }
@@ -1488,7 +1488,7 @@ onclick="openModal('project8')">
       lastUpdateTimeElement.textContent = "Mise à jour en cours...";
       
       // Appeler l'API avec le paramètre force_update=true
-      fetch(this.href)
+      fetch('rss_parser/api/?force_update=true')
         .then(response => response.json())
         .then(data => {
           // Mettre à jour la date de dernière mise à jour

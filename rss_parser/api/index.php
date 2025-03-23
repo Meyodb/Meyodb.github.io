@@ -29,7 +29,7 @@ $parser = new RSSParser();
 $category = isset($_GET['category']) ? $_GET['category'] : 'tous';
 
 // Vérifier si la catégorie est valide
-$validCategories = ['tous', 'ios', 'hardware', 'apps', 'services'];
+$validCategories = ['tous', 'ios', 'hardware', 'apps', 'services', 'autres'];
 if (!in_array($category, $validCategories)) {
     sendResponse(["error" => "Catégorie invalide"], 400);
 }

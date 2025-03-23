@@ -16,7 +16,7 @@ class RSSParser {
         [
             'url' => 'https://feeds.macrumors.com/MacRumors-All',
             'name' => 'MacRumors',
-            'category' => 'all'
+            'category' => 'autres'
         ],
         [
             'url' => 'https://feeds.macrumors.com/MacRumors-iOS',
@@ -31,7 +31,7 @@ class RSSParser {
         [
             'url' => 'https://www.imore.com/rss.xml',
             'name' => 'iMore',
-            'category' => 'all'
+            'category' => 'autres'
         ]
     ];
     
@@ -59,6 +59,30 @@ class RSSParser {
         // Créer le fichier d'articles s'il n'existe pas
         if (!file_exists($this->dataFilePath)) {
             file_put_contents($this->dataFilePath, json_encode([], JSON_PRETTY_PRINT));
+        }
+        
+        // Corriger les anciennes catégories "all" pour les articles existants
+        if (file_exists($this->dataFilePath)) {
+            $articles = json_decode(file_get_contents($this->dataFilePath), true);
+            $updated = false;
+            
+            if (is_array($articles)) {
+                foreach ($articles as &$article) {
+                    if (isset($article['categories']) && is_array($article['categories'])) {
+                        // Remplacer "all" par "autres"
+                        foreach ($article['categories'] as $key => $category) {
+                            if ($category === "all") {
+                                $article['categories'][$key] = "autres";
+                                $updated = true;
+                            }
+                        }
+                    }
+                }
+                
+                if ($updated) {
+                    file_put_contents($this->dataFilePath, json_encode($articles, JSON_PRETTY_PRINT));
+                }
+            }
         }
     }
     
@@ -92,10 +116,30 @@ class RSSParser {
                     $exists = false;
                     foreach ($allArticles as &$existingArticle) {
                         if ($existingArticle['id'] === $id) {
-                            // Mettre à jour la catégorie si nécessaire
-                            if (!in_array($article['category'], $existingArticle['categories'])) {
-                                $existingArticle['categories'][] = $article['category'];
+                            // S'assurer que categories est un tableau
+                            if (!isset($existingArticle['categories'])) {
+                                $existingArticle['categories'] = [];
+                                // Si l'ancien format utilisait category, le migrer
+                                if (isset($existingArticle['category'])) {
+                                    $existingArticle['categories'][] = $existingArticle['category'];
+                                    unset($existingArticle['category']);
+                                }
                             }
+                            
+                            // Ajouter la nouvelle catégorie si elle n'existe pas déjà
+                            if (isset($article['categories']) && is_array($article['categories'])) {
+                                foreach ($article['categories'] as $category) {
+                                    if (!in_array($category, $existingArticle['categories'])) {
+                                        $existingArticle['categories'][] = $category;
+                                    }
+                                }
+                            } elseif (isset($article['category'])) {
+                                // Compatibilité avec l'ancien format
+                                if (!in_array($article['category'], $existingArticle['categories'])) {
+                                    $existingArticle['categories'][] = $article['category'];
+                                }
+                            }
+                            
                             $exists = true;
                             break;
                         }
@@ -106,8 +150,17 @@ class RSSParser {
                         $article['id'] = $id;
                         $article['isNew'] = true;
                         $article['timestamp'] = $timestamp;
-                        $article['categories'] = [$article['category']];
-                        unset($article['category']);
+                        
+                        // S'assurer que categories est un tableau
+                        if (!isset($article['categories'])) {
+                            if (isset($article['category'])) {
+                                $article['categories'] = [$article['category']];
+                                unset($article['category']);
+                            } else {
+                                $article['categories'] = [$feed['category']];
+                            }
+                        }
+                        
                         $allArticles[] = $article;
                     }
                 }
@@ -179,7 +232,10 @@ class RSSParser {
                     'pubDate' => $pubDate,
                     'date' => $formattedDate,
                     'description' => $description,
-                    'category' => $articleCategory
+                    'id' => md5($link),
+                    'isNew' => true,
+                    'timestamp' => time(),
+                    'categories' => [$articleCategory]
                 ];
             }
             
@@ -243,14 +299,36 @@ class RSSParser {
     private function categorizeArticle($title, $description, $defaultCategory) {
         // Mots-clés pour chaque catégorie
         $keywords = [
-            'ios' => ['iOS', 'iPhone', 'iPad', 'iPadOS', 'Apple Watch', 'watchOS', 'Siri', 'App Store', 'SwiftUI'],
-            'hardware' => ['Mac', 'MacBook', 'iMac', 'Mac mini', 'Mac Pro', 'MacBook Pro', 'MacBook Air', 'AirPods', 'AirTag', 'Vision Pro', 'Apple Silicon', 'M1', 'M2', 'M3', 'M4'],
-            'apps' => ['App', 'application', 'logiciel', 'mise à jour', 'update', 'Safari', 'Mail', 'Photos', 'jeux', 'games', 'gaming'],
-            'services' => ['Apple TV+', 'Apple Music', 'Apple Arcade', 'iCloud', 'Apple Pay', 'Apple Card', 'Apple One', 'abonnement', 'subscription']
+            'ios' => [
+                'iOS', 'iPhone', 'iPad', 'iPadOS', 'Apple Watch', 'watchOS', 'Siri', 'App Store', 
+                'iOS 19', 'iOS 18', 'Apple Intelligence', 'iPhone OS', 'CoreML', 'ARKit', 'Face ID',
+                'Touch ID', 'Notification', 'Control Center', 'Messages', 'FaceTime', 'Widget',
+                'Raccourcis', 'Shortcuts', 'TestFlight', 'VisionOS'
+            ],
+            'hardware' => [
+                'Mac', 'MacBook', 'iMac', 'Mac mini', 'Mac Pro', 'MacBook Pro', 'MacBook Air', 
+                'AirPods', 'AirTag', 'Vision Pro', 'Apple Silicon', 'M1', 'M2', 'M3', 'M4', 'A14', 'A15',
+                'A16', 'A17', 'A18', 'processeur', 'processor', 'chip', 'puce', 'écran', 'display',
+                'battery', 'batterie', 'camera', 'appareil photo', 'LIDAR', 'MagSafe', 'TouchBar', 
+                'pliable', 'foldable', 'USB-C', 'Lightning', 'Thunderbolt', 'SSD', 'HomePod', 'Apple TV'
+            ],
+            'apps' => [
+                'App', 'application', 'logiciel', 'mise à jour', 'update', 'Safari', 'Mail', 'Photos', 
+                'jeux', 'games', 'gaming', 'développeur', 'developer', 'SDK', 'Swift', 'App Review',
+                'App Store Connect', 'TestFlight', 'Xcode', 'SwiftUI', 'UIKit', 'AppKit', 'framework',
+                'extension', 'widget', 'développement', 'development', 'API', 'Apple Developer'
+            ],
+            'services' => [
+                'Apple TV+', 'Apple Music', 'Apple Arcade', 'iCloud', 'Apple Pay', 'Apple Card', 
+                'Apple One', 'abonnement', 'subscription', 'streaming', 'Apple News+', 'Apple Fitness+',
+                'iTunes', 'Apple Books', 'Apple Podcasts', 'Cloud Gaming', 'Apple Care', 'Wallet',
+                'Calendar', 'service', 'stockage', 'storage', 'Famille', 'Family', 'partage', 'sharing'
+            ]
         ];
         
         // Contenu combiné pour la recherche
         $content = $title . ' ' . $description;
+        $content = strtolower($content);
         
         // Vérifier les correspondances de mots-clés
         $matchedCategories = [];
@@ -260,8 +338,14 @@ class RSSParser {
         foreach ($keywords as $category => $categoryKeywords) {
             $matches = 0;
             foreach ($categoryKeywords as $keyword) {
-                if (stripos($content, $keyword) !== false) {
-                    $matches++;
+                // Utiliser une recherche insensible à la casse avec le mot-clé entier
+                if (stripos($content, strtolower($keyword)) !== false) {
+                    // Donner un poids plus important aux mots-clés trouvés dans le titre
+                    if (stripos(strtolower($title), strtolower($keyword)) !== false) {
+                        $matches += 2;
+                    } else {
+                        $matches += 1;
+                    }
                 }
             }
             
@@ -274,8 +358,13 @@ class RSSParser {
             }
         }
         
+        // Si on a des correspondances, retourner la catégorie avec le plus de matches
+        if (count($matchedCategories) > 0) {
+            return $bestCategory;
+        }
+        
         // Si aucune correspondance, utiliser la catégorie par défaut
-        return $bestCategory;
+        return $defaultCategory;
     }
     
     /**
@@ -299,9 +388,12 @@ class RSSParser {
         }
         
         // Filtrer les articles par catégorie
-        return array_filter($articles, function($article) use ($category) {
+        $filteredArticles = array_filter($articles, function($article) use ($category) {
             return in_array($category, $article['categories']);
         });
+        
+        // Réindexer le tableau pour avoir un tableau numérique sans trous
+        return array_values($filteredArticles);
     }
 }
 
