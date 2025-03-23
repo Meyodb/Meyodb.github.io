@@ -1,15 +1,26 @@
-FROM nginx:alpine
+FROM php:8.0-fpm-alpine
 
-COPY . /usr/share/nginx/html
+# Installation des dépendances
+RUN apk add --no-cache nginx && \
+    docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install xml && \
+    docker-php-ext-install simplexml && \
+    docker-php-ext-install curl && \
+    docker-php-ext-install mbstring
 
-# Configuration pour PHP
-RUN apk add --no-cache php8 php8-fpm php8-json php8-xml php8-curl php8-mbstring php8-phar php8-openssl
+# Création des répertoires
+RUN mkdir -p /run/nginx && \
+    mkdir -p /var/log/php-fpm
 
-# Copier la configuration Nginx personnalisée
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copie des fichiers du projet
+COPY . /var/www/html
+COPY nginx.conf /etc/nginx/http.d/default.conf
 
-# Exposer le port 80
+# Permissions
+RUN chown -R www-data:www-data /var/www/html
+
+# Port
 EXPOSE 80
 
-# Commande pour démarrer PHP-FPM et Nginx
-CMD sh -c "php-fpm8 -D && nginx -g 'daemon off;'" 
+# Démarrage des services
+CMD php-fpm -D && nginx -g 'daemon off;' 
