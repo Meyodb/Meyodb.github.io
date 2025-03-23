@@ -1384,7 +1384,7 @@ onclick="openModal('project8')">
                           </div>
                       </div>
                       <div class="flex justify-between">
-                          <a href="http://localhost/rss_parser/api/?force_update=true" id="force-update-btn" class="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
+                          <a href="http://api.meyo.github.io/rss_parser/api/?force_update=true" id="force-update-btn" class="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
                               Mettre à jour
                           </a>
                       </div>
@@ -1432,7 +1432,7 @@ onclick="openModal('project8')">
     window.addEventListener('resize', updateCarouselConfig);
     
     // Configuration de l'API RSS
-    const API_BASE_URL = 'http://localhost/rss_parser/api'; // URL du serveur API local
+    const API_BASE_URL = 'http://api.meyo.github.io/rss_parser/api'; // URL du serveur API avec domaine
 
     // Fonction pour récupérer les articles depuis l'API
     async function fetchArticles(category = 'tous') {
