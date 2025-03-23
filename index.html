@@ -1369,23 +1369,6 @@ onclick="openModal('project8')">
                 </div>
               </template>
               
-              <!-- Outils de veille -->
-              <div class="mt-10 p-6 bg-white dark:bg-gray-700 rounded-lg shadow">
-                  <h4 class="text-xl font-bold mb-4 dark:text-white">Mes outils de veille technologique</h4>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                          <h5 class="font-semibold mb-2 dark:text-white">Agrégateurs RSS</h5>
-                          <p class="text-gray-600 dark:text-gray-300 mb-2">
-                              J'utilise principalement Feedly pour centraliser et organiser mes flux RSS, avec des catégories pour suivre différents aspects de l'écosystème Apple.
-                          </p>
-                      </div>
-                      <div>
-                          <h5 class="font-semibold mb-2 dark:text-white">Modalités de veille</h5>
-                          <p class="text-gray-600 dark:text-gray-300">
-                              Ma veille est quotidienne pour suivre l'actualité immédiate, avec une synthèse hebdomadaire des informations les plus pertinentes pour mes projets de développement.
-                          </p>
-                      </div>
-                  </div>
                   <!-- Paramètres d'automatisation -->
                   <div class="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                       <h5 class="font-semibold mb-2 dark:text-white">Système d'automatisation RSS</h5>
@@ -1399,13 +1382,10 @@ onclick="openModal('project8')">
                           <div class="text-sm text-gray-600 dark:text-gray-300" id="last-update-info">
                               <span class="font-medium">Dernière mise à jour :</span> <span id="last-update-time">Chargement...</span>
                           </div>
-                          <div class="text-sm text-gray-600 dark:text-gray-300">
-                              <span class="font-medium">Fréquence :</span> Toutes les 30 minutes
-                          </div>
                       </div>
                       <div class="flex justify-between">
                           <a href="rss_parser/api/?force_update=true" id="force-update-btn" class="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
-                              Forcer une mise à jour
+                              Mettre à jour
                           </a>
                       </div>
                   </div>
