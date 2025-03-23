@@ -1,12 +1,10 @@
 FROM php:8.0-fpm-alpine
 
 # Installation des dépendances
-RUN apk add --no-cache nginx && \
+RUN apk add --no-cache nginx libxml2-dev && \
     docker-php-ext-install pdo_mysql && \
-    docker-php-ext-install xml && \
-    docker-php-ext-install simplexml && \
-    docker-php-ext-install curl && \
-    docker-php-ext-install mbstring
+    docker-php-ext-install -j$(nproc) xml simplexml dom soap && \
+    docker-php-ext-install curl mbstring
 
 # Création des répertoires
 RUN mkdir -p /run/nginx && \
