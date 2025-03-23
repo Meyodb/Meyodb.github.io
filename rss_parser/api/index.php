@@ -1,11 +1,19 @@
 <?php
+// Inclure la configuration
+require_once __DIR__ . '/../config.php';
 
-// Activer le CORS pour autoriser les requêtes depuis le domaine du portfolio
-header("Access-Control-Allow-Origin: *");
+// Activer le CORS pour autoriser les requêtes depuis GitHub Pages
+header("Access-Control-Allow-Origin: " . GITHUB_PAGES_URL);
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+// Gestion des requêtes OPTIONS (pré-flight CORS)
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 // Inclure la classe RSSParser
 require_once __DIR__ . '/../RSSParser.php';
@@ -43,13 +51,13 @@ try {
         $articles = $parser->fetchAllFeeds();
     } else {
         // Vérifier quand a eu lieu la dernière mise à jour
-        $lastUpdateFile = __DIR__ . '/../data/last_update.txt';
+        $lastUpdateFile = DATA_DIR . '/last_update.txt';
         $currentTime = time();
         $lastUpdateTime = file_exists($lastUpdateFile) ? (int)file_get_contents($lastUpdateFile) : 0;
         $timeDiff = $currentTime - $lastUpdateTime;
         
-        // Si la dernière mise à jour date de plus de 30 minutes, mettre à jour les flux
-        if ($timeDiff > 1800) {
+        // Si la dernière mise à jour date de plus de l'intervalle de cache, mettre à jour les flux
+        if ($timeDiff > CACHE_UPDATE_INTERVAL) {
             $articles = $parser->fetchAllFeeds();
             file_put_contents($lastUpdateFile, $currentTime);
         } else {

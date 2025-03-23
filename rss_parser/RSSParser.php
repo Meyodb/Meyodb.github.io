@@ -1,4 +1,8 @@
 <?php
+// Inclure la configuration si elle n'est pas déjà incluse
+if (!defined('DATA_DIR')) {
+    require_once __DIR__ . '/config.php';
+}
 
 /**
  * Classe RSSParser
@@ -40,12 +44,12 @@ class RSSParser {
      */
     public function __construct() {
         // Définir les chemins des fichiers
-        $this->dataFilePath = __DIR__ . '/data/articles.json';
-        $this->feedsFilePath = __DIR__ . '/data/feeds.json';
+        $this->dataFilePath = DATA_DIR . '/articles.json';
+        $this->feedsFilePath = DATA_DIR . '/feeds.json';
         
         // Créer le répertoire de données s'il n'existe pas
-        if (!file_exists(__DIR__ . '/data')) {
-            mkdir(__DIR__ . '/data', 0755, true);
+        if (!file_exists(DATA_DIR)) {
+            mkdir(DATA_DIR, 0755, true);
         }
         
         // Créer le fichier des flux s'il n'existe pas

@@ -1384,7 +1384,7 @@ onclick="openModal('project8')">
                           </div>
                       </div>
                       <div class="flex justify-between">
-                          <a href="rss_parser/api/?force_update=true" id="force-update-btn" class="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
+                          <a href="http://api.meyo.github.io/api/?force_update=true" id="force-update-btn" class="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors">
                               Mettre à jour
                           </a>
                       </div>
@@ -1431,14 +1431,17 @@ onclick="openModal('project8')">
     // Ajout d'un écouteur de redimensionnement pour adapter le carousel
     window.addEventListener('resize', updateCarouselConfig);
     
+    // Configuration de l'API RSS
+    const API_BASE_URL = 'http://api.meyo.github.io/api'; // URL du serveur API
+
     // Fonction pour récupérer les articles depuis l'API
     async function fetchArticles(category = 'tous') {
       try {
         // Afficher un indicateur de chargement dans lastUpdateTimeElement
         lastUpdateTimeElement.textContent = "Chargement...";
         
-        // Récupérer les articles depuis l'API PHP
-        const response = await fetch(`rss_parser/api/?category=${category}`);
+        // Récupérer les articles depuis l'API PHP distante
+        const response = await fetch(`${API_BASE_URL}/?category=${category}`);
         if (!response.ok) {
           throw new Error('Erreur lors de la récupération des articles');
         }
@@ -1468,7 +1471,7 @@ onclick="openModal('project8')">
       lastUpdateTimeElement.textContent = "Mise à jour en cours...";
       
       // Appeler l'API avec le paramètre force_update=true
-      fetch('rss_parser/api/?force_update=true')
+      fetch(`${API_BASE_URL}/?force_update=true`)
         .then(response => response.json())
         .then(data => {
           // Mettre à jour la date de dernière mise à jour

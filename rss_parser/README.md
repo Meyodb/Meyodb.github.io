@@ -1,6 +1,93 @@
-# Système de Parser RSS pour Portfolio
+# Système d'API RSS pour Meyodb.github.io
 
-Ce système permet de récupérer et analyser automatiquement les flux RSS d'actualités Apple, puis de les stocker dans un fichier JSON pour les afficher sur votre portfolio.
+Ce système permet de récupérer et d'analyser les flux RSS d'actualités technologiques, puis de les exposer via une API JSON consommée par le site web statique hébergé sur GitHub Pages.
+
+## Architecture
+
+- **Site Web Statique** : Hébergé sur GitHub Pages (`https://meyodb.github.io`)
+- **API PHP** : Hébergée sur un serveur PHP (`http://api.meyo.github.io/api/`)
+
+Cette architecture permet d'avoir un site statique rapide sur GitHub Pages, tout en conservant la puissance du traitement PHP côté serveur pour le parsing RSS.
+
+## Installation sur le serveur
+
+### Prérequis
+
+- PHP 7.4+ avec extensions xml, curl, json
+- Serveur web (Apache ou Nginx)
+- Accès aux crons
+
+### Installation rapide
+
+1. Clonez le dépôt sur votre serveur :
+   ```
+   git clone https://github.com/Meyodb/Meyodb.github.io.git
+   ```
+
+2. Exécutez le script de configuration :
+   ```
+   cd Meyodb.github.io
+   sudo chmod +x rss_server_setup.sh
+   sudo ./rss_server_setup.sh
+   ```
+
+3. Vérifiez que l'API fonctionne en visitant :
+   ```
+   http://api.meyo.github.io/api/status.php
+   ```
+
+### Configuration manuelle
+
+Si vous préférez configurer manuellement :
+
+1. Assurez-vous que les répertoires `rss_parser/data/` et `rss_parser/logs/` existent et sont accessibles en écriture.
+2. Configurez un cron job pour exécuter `update.php` toutes les 30 minutes :
+   ```
+   */30 * * * * php /chemin/vers/rss_parser/update.php >> /chemin/vers/rss_parser/logs/cron.log 2>&1
+   ```
+3. Configurez un virtual host pour exposer l'API.
+
+## Endpoints de l'API
+
+### Récupérer les articles
+```
+GET /api/
+GET /api/?category=ios
+```
+
+Paramètres :
+- `category` : Filtre par catégorie (tous, ios, hardware, apps, services, autres)
+- `force_update` : Force une mise à jour des flux (true/false)
+
+### Statut du système
+```
+GET /api/status.php
+```
+
+## Configuration
+
+La configuration se trouve dans le fichier `config.php` :
+
+```php
+// URL du site hébergé sur GitHub Pages
+define('GITHUB_PAGES_URL', 'https://meyodb.github.io');
+
+// Intervalle de mise à jour du cache en secondes (30 minutes par défaut)
+define('CACHE_UPDATE_INTERVAL', 1800);
+```
+
+## Structure des fichiers
+
+- `api/` - Endpoints de l'API
+- `data/` - Stockage des données JSON
+- `logs/` - Logs du système
+- `RSSParser.php` - Classe principale de parsing RSS
+- `update.php` - Script de mise à jour des flux
+- `config.php` - Configuration du système
+
+## Utilisation
+
+Le site statique sur GitHub Pages fait des appels à l'API pour récupérer les derniers articles. En cas d'indisponibilité de l'API, le site affiche des données de démonstration pour garantir que l'interface reste fonctionnelle.
 
 ## Fonctionnalités
 

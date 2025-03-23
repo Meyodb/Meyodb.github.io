@@ -1,4 +1,6 @@
 <?php
+// Inclure la configuration
+require_once __DIR__ . '/config.php';
 
 // Inclure la classe RSSParser
 require_once __DIR__ . '/RSSParser.php';
@@ -7,12 +9,7 @@ require_once __DIR__ . '/RSSParser.php';
 date_default_timezone_set('Europe/Paris');
 
 // Créer un fichier de log
-$logFile = __DIR__ . '/logs/update_' . date('Y-m-d') . '.log';
-
-// Créer le répertoire de logs s'il n'existe pas
-if (!file_exists(__DIR__ . '/logs')) {
-    mkdir(__DIR__ . '/logs', 0755, true);
-}
+$logFile = LOGS_DIR . '/update_' . date('Y-m-d') . '.log';
 
 // Fonction pour écrire dans le fichier de log
 function writeLog($message) {
@@ -40,7 +37,7 @@ try {
     writeLog("Nombre d'articles récupérés: " . count($articles));
     
     // Enregistrer le timestamp de dernière mise à jour
-    file_put_contents(__DIR__ . '/data/last_update.txt', time());
+    file_put_contents(DATA_DIR . '/last_update.txt', time());
     
     writeLog("Mise à jour terminée avec succès");
 } catch (Exception $e) {
